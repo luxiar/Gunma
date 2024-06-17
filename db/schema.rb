@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema[7.1].define(version: 2024_06_17_042042) do
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.text "content"
+    t.text "content", null: false
     t.bigint "user_id", null: false
     t.bigint "daily_report_id", null: false
     t.timestamp "deleted_at"
@@ -23,9 +23,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_042042) do
   end
 
   create_table "daily_reports", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "content"
-    t.integer "mood"
+    t.integer "mood", default: 0
     t.bigint "user_id", null: false
     t.timestamp "deleted_at"
     t.datetime "created_at", null: false
@@ -43,10 +43,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_042042) do
   end
 
   create_table "learned_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.timestamp "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_learned_tags_on_name", unique: true
   end
 
   create_table "thumbs_ups", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -59,14 +60,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_042042) do
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "last_name"
-    t.string "first_name"
-    t.string "email"
-    t.string "password"
-    t.boolean "admin"
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "email", null: false
+    t.string "password", null: false
+    t.boolean "admin", default: false
     t.timestamp "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "comments", "daily_reports"
