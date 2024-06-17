@@ -75,6 +75,6 @@ end
 gem 'bootstrap'
 gem 'cancancan'
 gem 'dartsass-rails'
-gem 'devise', require: false
+gem 'devise'
 gem 'paranoia'
 gem 'ransack'
