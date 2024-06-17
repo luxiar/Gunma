@@ -1,0 +1,57 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-capybara
+  - rubocop-rspec_rails
+
+inherit_gem:
+  rubocop-fjord:
+    - "config/rubocop.yml"
+    - "config/rails.yml"
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Exclude:
+    - spec/**/*
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/system/*
+
+RSpec/ContextWording:
+  AllowedPatterns:
+    - 場合$
+    - とき$
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 160
+
+AllCops:
+  TargetRubyVersion: 3.3
+  Exclude:
+    - '**/templates/**/*'
+    - '**/vendor/**/*'
+    - app/views/**/*
+    - config/**/*
+    - config.ru
+    - node_modules/**/*
+    - db/migrate/*
+    - db/schema.rb
+    - storage/**/*
+    - tmp/**/*
+    - bin/**/*
