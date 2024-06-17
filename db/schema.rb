@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_17_003340) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_17_022712) do
   create_table "daily_reports", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -38,6 +38,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_003340) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "thumbs_ups", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "daily_report_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["daily_report_id"], name: "index_thumbs_ups_on_daily_report_id"
+    t.index ["user_id"], name: "index_thumbs_ups_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "last_name"
     t.string "first_name"
@@ -52,4 +61,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_003340) do
   add_foreign_key "daily_reports", "users"
   add_foreign_key "daily_reports_learned_tags", "daily_reports"
   add_foreign_key "daily_reports_learned_tags", "learned_tags"
+  add_foreign_key "thumbs_ups", "daily_reports"
+  add_foreign_key "thumbs_ups", "users"
 end
