@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_14_061059) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_17_003340) do
   create_table "daily_reports", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -22,6 +22,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_061059) do
     t.index ["user_id"], name: "index_daily_reports_on_user_id"
   end
 
+  create_table "daily_reports_learned_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "daily_report_id", null: false
+    t.bigint "learned_tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["daily_report_id"], name: "index_daily_reports_learned_tags_on_daily_report_id"
+    t.index ["learned_tag_id"], name: "index_daily_reports_learned_tags_on_learned_tag_id"
+  end
+
+  create_table "learned_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "moods", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "type"
   end
@@ -29,13 +44,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_061059) do
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "last_name"
     t.string "first_name"
-    t.string "email", null: false
-    t.string "password", null: false
-    t.boolean "admin", default: false
+    t.string "email"
+    t.string "password"
+    t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "daily_reports", "moods"
   add_foreign_key "daily_reports", "users"
+  add_foreign_key "daily_reports_learned_tags", "daily_reports"
+  add_foreign_key "daily_reports_learned_tags", "learned_tags"
 end
