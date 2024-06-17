@@ -14,11 +14,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_003340) do
   create_table "daily_reports", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.integer "mood"
     t.bigint "user_id", null: false
-    t.bigint "mood_id", null: false
+    t.timestamp "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["mood_id"], name: "index_daily_reports_on_mood_id"
     t.index ["user_id"], name: "index_daily_reports_on_user_id"
   end
 
@@ -33,12 +33,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_003340) do
 
   create_table "learned_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
+    t.timestamp "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "moods", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "type"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -47,11 +44,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_003340) do
     t.string "email"
     t.string "password"
     t.boolean "admin"
+    t.timestamp "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "daily_reports", "moods"
   add_foreign_key "daily_reports", "users"
   add_foreign_key "daily_reports_learned_tags", "daily_reports"
   add_foreign_key "daily_reports_learned_tags", "learned_tags"
