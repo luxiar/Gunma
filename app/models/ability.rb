@@ -7,7 +7,7 @@ class Ability
     return if user.blank?
 
     # 一般ユーザー
-
+    
     # 日報
     # ログインしていれば閲覧、作成可能
     can %i[read create], DailyReport
@@ -16,7 +16,7 @@ class Ability
 
     # ユーザー情報
     # 自分のもののみ閲覧、編集など可能
-    can :manage, User, id: user.id
+    can %i[show edit update], User, id: user.id
 
     # 管理者は全て許可
     can :manage, :all if user.admin?
