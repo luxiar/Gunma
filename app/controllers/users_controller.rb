@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :check_authority
   before_action :set_user, only: %i[ show edit update destroy ]
 
   # GET /users or /users.json
@@ -66,5 +67,9 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password, :admin)
+    end
+
+    def check_authority
+      redirect_to daily_reports_url if cannot? :manage, User
     end
 end

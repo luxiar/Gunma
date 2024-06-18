@@ -14,7 +14,7 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <% if user_signed_in? %>
-      <% if current_user.admin %>
+      <% if can? :read, User %>
         <%= link_to 'ユーザー一覧', users_path %>
       <% end %>
       <%= link_to '日報一覧', daily_reports_path %>

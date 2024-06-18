@@ -1,4 +1,5 @@
 class DailyReportsController < ApplicationController
+  before_action :check_authority, except: %i[ index show create ]
   before_action :set_daily_report, only: %i[ show edit update destroy ]
 
   # GET /daily_reports or /daily_reports.json
@@ -66,5 +67,9 @@ class DailyReportsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def daily_report_params
       params.require(:daily_report).permit(:title, :content, :mood)
+    end
+
+    def check_authority
+      redirect_to daily_reports_url, alert: '権限がありません' if cannot? :manage, DailyReport
     end
 end
