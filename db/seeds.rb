@@ -13,7 +13,7 @@ admin_user = User.create(
   last_name: 'min',
   email: 'admin@example.com',
   password: 'password',
-  admin: true,
+  admin: true
 )
 
 normal_user = User.create(
@@ -21,7 +21,7 @@ normal_user = User.create(
   last_name: 'mal',
   email: 'normal@example.com',
   password: 'password',
-  admin: false,
+  admin: false
 )
 
 2.times do |i|
@@ -29,7 +29,7 @@ normal_user = User.create(
     title: "title#{i}",
     content: "content#{i}",
     mood: i % 5,
-    user_id: admin_user.id,
+    user_id: admin_user.id
   )
 end
 
@@ -38,6 +38,6 @@ end
     title: "title#{i}",
     content: "content#{i}",
     mood: i % 5,
-    user_id: normal_user.id,
+    user_id: normal_user.id
   )
 end
