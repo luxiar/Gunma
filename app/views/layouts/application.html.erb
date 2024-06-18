@@ -13,6 +13,13 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <% if user_signed_in? %>
+      <% if current_user.admin %>
+        <%= link_to 'ユーザー一覧', users_path %>
+      <% end %>
+      <%= link_to '日報一覧', daily_reports_path %>
+      <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "ログアウトします。よろしいですか？" } %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
+  resources :daily_reports
+  resources :users
   devise_for :users,
+  path: '',
+  path_names: {
+    sign_up: '',
+    sign_in: 'login',
+    sign_out: 'logout',
+    registration: 'signup'
+  },
   controllers: {
     registrations: "users/registrations",
     sessions: 'users/sessions'
@@ -12,5 +21,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "daily_reports#index"
 end
