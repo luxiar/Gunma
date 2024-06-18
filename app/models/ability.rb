@@ -6,9 +6,19 @@ class Ability
   def initialize(user)
     return if user.blank?
 
+    # 一般ユーザー
+
+    # 日報
+    # ログインしていれば閲覧、作成可能
     can %i[read create], DailyReport
+    # 自分のもののみ編集、削除可能
     can %i[update destroy], DailyReport, user_id: user.id
 
+    # ユーザー情報
+    # 自分のもののみ閲覧、編集など可能
+    can :manage, User, id: user.id
+
+    # 管理者は全て許可
     can :manage, :all if user.admin?
     # Define abilities for the user here. For example:
     #
