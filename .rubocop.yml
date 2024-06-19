@@ -55,4 +55,3 @@ AllCops:
     - storage/**/*
     - tmp/**/*
     - bin/**/*
-    - spec/**/*

@@ -7,7 +7,7 @@ class Ability
     return if user.blank?
 
     # 一般ユーザー
-    
+
     # 日報
     # ログインしていれば閲覧、作成可能
     can %i[read create], DailyReport
