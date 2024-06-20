@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  resources :daily_reports
+  resources :users
+  devise_for :user,
+  controllers: {
+    sessions: 'users/sessions'
+  },
+  skip: [:registrations]
+
+  as :user do
+    post 'users/sign_up' => 'users/registrations#create', :as => :user_registration
+    patch 'users/edit' => 'users/registrations#update', :as => :update_user_registration
+    delete 'users/delete' => 'users/registrations#destroy', :as => :delete_user_registration
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -6,5 +20,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "daily_reports#index"
 end
