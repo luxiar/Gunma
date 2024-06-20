@@ -3,9 +3,15 @@ Rails.application.routes.draw do
   resources :users
   devise_for :user,
   controllers: {
-    registrations: 'users/registrations',
     sessions: 'users/sessions'
-  }
+  },
+  skip: [:registrations]
+
+  as :user do
+    post 'users/sign_up' => 'users/registrations#create', :as => :user_registration
+    patch 'users/edit' => 'users/registrations#update', :as => :update_user_registration
+    delete 'users/delete' => 'users/registrations#destroy', :as => :delete_user_registration
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
