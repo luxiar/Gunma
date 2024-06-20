@@ -24,16 +24,14 @@ normal_user = User.create(
   admin: false
 )
 
-(1..10).each do |i|
+(1..5).each do |i|
   DailyReport.create(
     title: "title#{i}",
     content: "content#{i}",
     mood: i % 5,
     user_id: admin_user.id
   )
-end
 
-(1..10).each do |i|
   DailyReport.create(
     title: "title#{i}",
     content: "content#{i}",
@@ -42,9 +40,9 @@ end
   )
 end
 
-(0..10).each do |i|
+(1..10).each do |i|
   User.create(
-    first_name: "normal",
+    first_name: 'normal',
     last_name: "user#{i}",
     email: "user#{i}@example.com",
     password: 'password',
