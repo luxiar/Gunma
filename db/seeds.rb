@@ -9,22 +9,22 @@
 #   end
 
 admin_user = User.create(
-  first_name: 'ad',
-  last_name: 'min',
+  first_name: 'admin',
+  last_name: 'user',
   email: 'admin@example.com',
   password: 'password',
   admin: true
 )
 
 normal_user = User.create(
-  first_name: 'nor',
-  last_name: 'mal',
+  first_name: 'normal',
+  last_name: 'user',
   email: 'normal@example.com',
   password: 'password',
   admin: false
 )
 
-2.times do |i|
+(1..10).each do |i|
   DailyReport.create(
     title: "title#{i}",
     content: "content#{i}",
@@ -33,11 +33,21 @@ normal_user = User.create(
   )
 end
 
-2.times do |i|
+(1..10).each do |i|
   DailyReport.create(
     title: "title#{i}",
     content: "content#{i}",
     mood: i % 5,
     user_id: normal_user.id
+  )
+end
+
+(0..10).each do |i|
+  User.create(
+    first_name: "normal",
+    last_name: "user#{i}",
+    email: "user#{i}@example.com",
+    password: 'password',
+    admin: false
   )
 end

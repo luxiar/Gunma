@@ -1,14 +1,15 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Users</h1>
+<h1>ユーザー一覧</h1>
 
 <div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
+  <ul class="list-group list-group-flush">
+    <% @users.each do |user| %>
+      <li class="list-group-item">
+        <%= "#{user.first_name} #{user.last_name} : #{user.admin ? '管理者' : '一般'}" %> |
+        <%= link_to "ユーザー詳細へ", user, class: 'link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' %>
+      </li>
+    <% end %>
+  </ul>
 </div>
 
-<%= link_to "New user", new_user_path %>
+
+<%= link_to "新規ユーザー", new_user_path, class: 'btn btn-outline-info' %>
