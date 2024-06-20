@@ -1,16 +1,9 @@
 Rails.application.routes.draw do
   resources :daily_reports
   resources :users
-  devise_for :users,
-  path: '',
-  path_names: {
-    sign_up: '',
-    sign_in: 'login',
-    sign_out: 'logout',
-    registration: 'signup'
-  },
+  devise_for :user,
   controllers: {
-    registrations: "users/registrations",
+    registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
 
