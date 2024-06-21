@@ -8,31 +8,33 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-admin_user = User.create(
+admin_user = User.create!(
   first_name: 'admin',
   last_name: 'user',
   email: 'admin@example.com',
   password: 'password',
+  password_confirmation: 'password',
   admin: true
 )
 
-normal_user = User.create(
+normal_user = User.create!(
   first_name: 'normal',
   last_name: 'user',
   email: 'normal@example.com',
   password: 'password',
+  password_confirmation: 'password',
   admin: false
 )
 
 (1..5).each do |i|
-  DailyReport.create(
+  DailyReport.create!(
     title: "title#{i}",
     content: "content#{i}",
     mood: i % 5,
     user_id: admin_user.id
   )
 
-  DailyReport.create(
+  DailyReport.create!(
     title: "title#{i}",
     content: "content#{i}",
     mood: i % 5,
@@ -41,11 +43,12 @@ normal_user = User.create(
 end
 
 (1..10).each do |i|
-  User.create(
+  User.create!(
     first_name: 'normal',
     last_name: "user#{i}",
     email: "user#{i}@example.com",
     password: 'password',
+    password_confirmation: 'password',
     admin: false
   )
 end
