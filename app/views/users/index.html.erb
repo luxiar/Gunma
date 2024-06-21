@@ -1,14 +1,31 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Users</h1>
-
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
+<div class="d-flex justify-content-between align-items-center ">
+  <h1>ユーザー一覧</h1>
+  <% if can? :create, User %>
+    <%= link_to "新規ユーザー", new_user_path, class: 'btn btn-outline-info' %>
   <% end %>
 </div>
 
-<%= link_to "New user", new_user_path %>
+<div id="users">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>氏名</td>
+        <td>メールアドレス</td>
+        <td>管理者</td>
+        <td></td>
+      </tr>
+    </thead>
+
+    <tbody class="table-group-divider">
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= "#{user.first_name} #{user.last_name}" %></td>
+          <td><%= user.email %></td>
+          <td><%= user.admin ? '管理者' : '一般' %></td>
+          <td><%= link_to "ユーザー詳細へ", user, class: 'link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    
+  </table>
+</div>

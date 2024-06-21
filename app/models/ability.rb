@@ -15,8 +15,10 @@ class Ability
     can %i[update destroy], DailyReport, user_id: user.id
 
     # ユーザー情報
-    # 自分のもののみ閲覧、編集など可能
-    can %i[show edit update], User, id: user.id
+    # ログインしていれば閲覧可能
+    can :read, User
+    # 自分のもののみ編集など可能
+    can :update, User, id: user.id
 
     # 管理者は全て許可
     can :manage, :all if user.admin?

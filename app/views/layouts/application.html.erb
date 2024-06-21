@@ -11,16 +11,46 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if user_signed_in? %>
-      <%= link_to 'プロフィール', user_path(current_user.id) %>
-      <% if can? :read, User %>
-        <%= link_to 'ユーザー一覧', users_path %>
-      <% end %>
-      <%= link_to '日報一覧', daily_reports_path %>
-      <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "ログアウトします。よろしいですか？" } %>
+    <header>
+      <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <%= link_to 'Gunma', daily_reports_path, class: 'navbar-brand' %>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-lg-0">
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to 'プロフィール', user_path(current_user.id), class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'ユーザー一覧', users_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '日報一覧', daily_reports_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "ログアウトします。よろしいですか？" }, class: 'nav-link' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    
+    <% if notice.present? %>
+      <div class="alert alert-success" role="alert">
+        <%= notice %>
+      </div>
     <% end %>
-    <%= yield %>
+    <% if alert.present? %>
+      <div class="alert alert-danger" role="alert">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <main class="container mt-5">
+      <%= yield %>
+    </div>
   </body>
 </html>

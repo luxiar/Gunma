@@ -1,17 +1,7 @@
 Rails.application.routes.draw do
   resources :daily_reports
   resources :users
-  devise_for :user,
-  controllers: {
-    sessions: 'users/sessions'
-  },
-  skip: [:registrations]
-
-  as :user do
-    post 'users/sign_up' => 'users/registrations#create', :as => :user_registration
-    patch 'users/edit' => 'users/registrations#update', :as => :update_user_registration
-    delete 'users/delete' => 'users/registrations#destroy', :as => :delete_user_registration
-  end
+  devise_for :user
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -20,5 +10,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "daily_reports#index"
+  root "users#show"
 end
