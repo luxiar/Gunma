@@ -18,7 +18,7 @@ class Ability
     # ログインしていれば閲覧可能
     can :read, User
     # 自分のもののみ編集など可能
-    can %i[edit update], User, id: user.id
+    can :update, User, id: user.id
 
     # 管理者は全て許可
     can :manage, :all if user.admin?
