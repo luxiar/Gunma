@@ -4,9 +4,7 @@
   <% if can? :edit, @user %>
     <%= link_to "編集", edit_user_path(@user), class: 'btn btn-outline-info' %>
   <% end %>
-  <% if can? :read, @user %>
-    <%= link_to "戻る", users_path, class: 'btn btn-outline-secondary' %>
-  <% end %>
+  <%= link_to "戻る", users_path, class: 'btn btn-outline-secondary' %>
   <% if (can? :destroy, @user) && @user != current_user %>
     <%= link_to "削除", @user, data: { turbo_method: :delete }, class: 'btn btn-outline-danger' %>
   <% end %>
