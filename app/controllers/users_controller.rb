@@ -5,7 +5,10 @@ class UsersController < ApplicationController
   def index; end
 
   # GET /users/1 or /users/1.json
-  def show; end
+  def show
+    @user ||= current_user
+    @daily_reports = @user.daily_reports.order(created_at: :desc).limit(5)
+  end
 
   # GET /users/new
   def new; end
@@ -16,7 +19,7 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     if @user.save
-      redirect_to user_url(@user), notice: '正常にユーザーが作成されました'
+      redirect_to user_url(@user), notice: 'ユーザーが作成されました'
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +28,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     if @user.update(user_params)
-      redirect_to user_url(@user), notice: '正常にユーザーが更新されました'
+      redirect_to user_url(@user), notice: 'ユーザーが更新されました'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +38,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy!
 
-    redirect_to users_url, notice: '正常にユーザーが削除されました'
+    redirect_to users_url, notice: 'ユーザーが削除されました'
   end
 
   private

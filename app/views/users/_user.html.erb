@@ -1,12 +1,7 @@
 <div id="<%= dom_id user %>">
   <p>
-    <strong>姓:</strong>
-    <%= user.first_name %>
-  </p>
-
-  <p>
-    <strong>名:</strong>
-    <%= user.last_name %>
+    <strong>ユーザー名:</strong>
+    <%= "#{user.first_name} #{user.last_name}" %>
   </p>
 
   <p>
@@ -18,5 +13,4 @@
     <strong>権限:</strong>
     <%= user.admin ? "管理者" : "一般" %>
   </p>
-
 </div>

@@ -1,15 +1,22 @@
-<% @user ||= current_user %>
-
-<%= render @user %>
-
 <div>
+  <%= render @user %>
+
   <% if can? :edit, @user %>
-    <%= link_to "Edit this user", edit_user_path(@user) %>
+    <%= link_to "編集", edit_user_path(@user), class: 'btn btn-outline-info' %>
   <% end %>
   <% if can? :read, @user %>
-    <%= link_to "Back to users", users_path %>
+    <%= link_to "戻る", users_path, class: 'btn btn-outline-secondary' %>
   <% end %>
-  <% if can? :destroy, @user %>
-    <%= button_to "Destroy this user", @user, method: :delete %>
+  <% if (can? :destroy, @user) && @user != current_user %>
+    <%= link_to "削除", @user, data: { turbo_method: :delete }, class: 'btn btn-outline-danger' %>
   <% end %>
 </div>
+
+<h2 class="mt-5">最新の日報</h2>
+
+<% @daily_reports.each do |daily_report| %>
+  <%= render partial: 'daily_reports/daily_report', locals: { daily_report: daily_report } %>
+  <p>
+    <%= link_to "Show this daily report", daily_report %>
+  </p>
+<% end %>
