@@ -9,8 +9,8 @@
 #   end
 
 admin_user = User.create!(
-  first_name: 'admin',
-  last_name: 'user',
+  last_name: 'admin',
+  first_name: 'user',
   email: 'admin@example.com',
   password: 'password',
   password_confirmation: 'password',
@@ -18,8 +18,8 @@ admin_user = User.create!(
 )
 
 normal_user = User.create!(
-  first_name: 'normal',
-  last_name: 'user',
+  last_name: 'normal',
+  first_name: 'user',
   email: 'normal@example.com',
   password: 'password',
   password_confirmation: 'password',
@@ -44,8 +44,8 @@ end
 
 (1..10).each do |i|
   User.create!(
-    first_name: 'normal',
-    last_name: "user#{i}",
+    last_name: 'normal',
+    first_name: "user#{i}",
     email: "user#{i}@example.com",
     password: 'password',
     password_confirmation: 'password',
