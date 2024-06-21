@@ -1,10 +1,11 @@
-<p style="color: green"><%= notice %></p>
+<% @user ||= current_user %>
 
 <%= render @user %>
 
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %>
-  
+  <% if can? :edit, @user %>
+    <%= link_to "Edit this user", edit_user_path(@user) %>
+  <% end %>
   <% if can? :read, @user %>
     <%= link_to "Back to users", users_path %>
   <% end %>
