@@ -1,7 +1,18 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
 
-  def index; end
+  def index
+    @users = @users.where(deleted_at: nil)
+  end
+
+  def retired
+    @users = @users.where.not(deleted_at: nil)
+    render :index
+  end
+
+  def all
+    render :index
+  end
 
   def show
     @user ||= current_user
@@ -29,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.active? && @user.update_column(:deleted_at, Time.current)
+    if @user.active? && @user.update_without_password(deleted_at: Time.current)
       redirect_to users_url, notice: 'ユーザーが削除されました'
     else
       redirect_to users_url, alert: 'ユーザーの削除に失敗しました'

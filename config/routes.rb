@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "users/retired" => "users#retired", as: :retired_users
+  get "users/all" => "users#all", as: :all_users
+
   resources :daily_reports
   resources :users
   devise_for :user

@@ -27,19 +27,14 @@ normal_user = User.create!(
 )
 
 (1..5).each do |i|
-  DailyReport.create!(
-    title: "title#{i}",
-    content: "content#{i}",
-    mood: i % 5,
-    user_id: admin_user.id
-  )
-
-  DailyReport.create!(
-    title: "title#{i}",
-    content: "content#{i}",
-    mood: i % 5,
-    user_id: normal_user.id
-  )
+  [admin_user, normal_user].each do |user|
+    DailyReport.create!(
+      title: "title#{i}",
+      content: "content#{i}",
+      mood: i % 5,
+      user_id: user.id
+    )
+  end
 
   User.create!(
     last_name: 'normal',
