@@ -40,9 +40,7 @@ normal_user = User.create!(
     mood: i % 5,
     user_id: normal_user.id
   )
-end
 
-(1..10).each do |i|
   User.create!(
     last_name: 'normal',
     first_name: "user#{i}",
@@ -50,5 +48,15 @@ end
     password: 'password',
     password_confirmation: 'password',
     admin: false
+  )
+
+  User.create!(
+    last_name: 'deleted',
+    first_name: "user#{i + 5}",
+    email: "user#{i + 5}@example.com",
+    password: 'password',
+    password_confirmation: 'password',
+    admin: false,
+    deleted_at: Time.current
   )
 end
