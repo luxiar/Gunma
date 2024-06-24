@@ -19,10 +19,10 @@
     <tbody class="table-group-divider">
       <% @users.each do |user| %>
         <tr>
-          <td><%= "#{user.first_name} #{user.last_name}" %></td>
+          <td><%= "#{user.last_name} #{user.first_name}" %></td>
           <td><%= user.email %></td>
           <td><%= user.admin ? '管理者' : '一般' %></td>
-          <td><%= link_to "ユーザー詳細へ", user, class: 'link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover' %></td>
+          <td><%= link_to "ユーザー詳細へ", user, class: 'btn btn-outline-secondary', style: '--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;' %></td>
         </tr>
       <% end %>
     </tbody>

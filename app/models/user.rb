@@ -7,4 +7,7 @@ class User < ApplicationRecord
   has_many :thumbs_ups, dependent: :destroy
   has_many :like_daily_reports, through: :thumbs_ups, source: :daily_report
   has_many :comments, dependent: :destroy
+
+  validates :last_name, presence: true
+  validates :first_name, presence: true
 end
