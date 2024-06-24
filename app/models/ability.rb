@@ -19,7 +19,7 @@ class Ability
 
     # ユーザー情報
     # 退社してたら閲覧のみ可能
-    can :read, User
+    can %i[read retired all], User
 
     # 入社してたら自分を編集可能
     can :update, User, id: user.id if user.active?

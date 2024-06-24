@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def retire
     if @user.active? && @user.update_without_password(deleted_at: Time.current)
       redirect_to user_url(@user), notice: 'ユーザーが削除されました'
     else
@@ -53,6 +53,12 @@ class UsersController < ApplicationController
     else
       redirect_to user_url(@user), alert: 'ユーザーの復元に失敗しました'
     end
+  end
+
+  def destroy
+    @user.destroy!
+
+    redirect_to users_url, notice: 'ユーザーが完全に削除されました'
   end
 
   private

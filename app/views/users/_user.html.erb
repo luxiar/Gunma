@@ -13,4 +13,8 @@
     <strong>権限:</strong>
     <%= user.admin ? "管理者" : "一般" %>
   </p>
+
+  <% if user.retired? %>
+    <p>退職済み</p>
+  <% end %>
 </div>

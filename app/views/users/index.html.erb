@@ -43,7 +43,7 @@
           <td><%= "#{user.last_name} #{user.first_name}" %></td>
           <td><%= user.email %></td>
           <td><%= user.admin ? '管理者' : '一般' %></td>
-          <td><%= '退社済み' if user.retired? %></td>
+          <td><%= '退職済み' if user.retired? %></td>
           <td><%= link_to "詳細", user, class: 'btn btn-outline-secondary', style: '--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;' %></td>
         </tr>
       <% end %>
