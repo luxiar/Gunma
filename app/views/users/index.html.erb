@@ -18,7 +18,7 @@
 
     <tbody class="table-group-divider">
       <% @users.each do |user| %>
-        <tr>
+        <tr class="<%= 'table-secondary' if user.retired? %>">
           <td><%= "#{user.last_name} #{user.first_name}" %></td>
           <td><%= user.email %></td>
           <td><%= user.admin ? '管理者' : '一般' %></td>

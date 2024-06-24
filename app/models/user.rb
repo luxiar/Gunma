@@ -10,7 +10,11 @@ class User < ApplicationRecord
 
   validates :last_name, presence: true
   validates :first_name, presence: true
-  
+
+  def active?
+    deleted_at.nil?
+  end
+
   def retired?
     deleted_at.present?
   end

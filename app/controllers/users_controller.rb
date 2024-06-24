@@ -29,9 +29,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy!
-
-    redirect_to users_url, notice: 'ユーザーが削除されました'
+    if @user.active? && @user.update_column(:deleted_at, Time.current)
+      redirect_to users_url, notice: 'ユーザーが削除されました'
+    else
+      redirect_to users_url, alert: 'ユーザーの削除に失敗しました'
+    end
   end
 
   private

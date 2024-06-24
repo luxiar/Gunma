@@ -6,19 +6,23 @@ class Ability
   def initialize(user)
     return if user.blank?
 
-    # 一般ユーザー
-
     # 日報
-    # ログインしていれば閲覧、作成可能
-    can %i[read create], DailyReport
-    # 自分のもののみ編集、削除可能
-    can %i[update destroy], DailyReport, user_id: user.id
+    # 退社してたら閲覧のみ可能
+    can :read, DailyReport
+
+    if user.active?
+      # ログインしていれば閲覧、作成可能
+      can :create, DailyReport
+      # 自分のもののみ編集、削除可能
+      can %i[update destroy], DailyReport, user_id: user.id
+    end
 
     # ユーザー情報
-    # ログインしていれば閲覧可能
+    # 退社してたら閲覧のみ可能
     can :read, User
-    # 自分のもののみ編集など可能
-    can :update, User, id: user.id
+
+    # 入社してたら自分を編集可能
+    can :update, User, id: user.id if user.active?
 
     # 管理者は全て許可
     can :manage, :all if user.admin?
