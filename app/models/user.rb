@@ -8,6 +8,6 @@ class User < ApplicationRecord
   has_many :like_daily_reports, through: :thumbs_ups, source: :daily_report
   has_many :comments, dependent: :destroy
 
-  validates :password, confirmation: true
-  validates :password_confirmation, presence: true
+  validates :last_name, presence: true
+  validates :first_name, presence: true
 end
