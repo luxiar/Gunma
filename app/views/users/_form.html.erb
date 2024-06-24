@@ -39,7 +39,7 @@
   <% if current_user.admin %>
     <div class="mb-3 form-check">
       <%= form.check_box :admin, class: "form-check-input" %>
-      <%= form.label '管理者として設定する', class: "form-check-label" %>
+      <%= form.label :admin, '管理者として設定する', class: "form-check-label" %>
     </div>
   <% end %>
 
