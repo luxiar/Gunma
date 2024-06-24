@@ -6,7 +6,11 @@
   <% end %>
   <%= link_to "戻る", users_path, class: 'btn btn-outline-secondary' %>
   <% if (can? :destroy, @user) && @user != current_user %>
-    <%= link_to "削除", @user, data: { turbo_method: :delete }, class: 'btn btn-outline-danger' %>
+    <% if @user.active? %>
+      <%= link_to "退社", @user, data: { turbo_method: :delete }, class: 'btn btn-outline-danger' %>
+    <% else %>
+      <%= link_to "復帰", restore_user_path(@user), data: { turbo_method: :patch }, class: 'btn btn-outline-success' %>
+    <% end %>
   <% end %>
 </div>
 
