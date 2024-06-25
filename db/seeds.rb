@@ -35,7 +35,9 @@ normal_user = User.create!(
       user_id: user.id
     )
   end
+end
 
+(1..10).each do |i|
   User.create!(
     last_name: 'normal',
     first_name: "user#{i}",
@@ -43,16 +45,6 @@ normal_user = User.create!(
     password: 'password',
     password_confirmation: 'password',
     admin: false,
-    status: :active
-  )
-
-  User.create!(
-    last_name: 'deleted',
-    first_name: "user#{i + 5}",
-    email: "user#{i + 5}@example.com",
-    password: 'password',
-    password_confirmation: 'password',
-    admin: false,
-    status: :retired
+    status: i % 3
   )
 end

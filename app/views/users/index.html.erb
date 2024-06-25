@@ -14,10 +14,13 @@
             <%= link_to 'active', users_path, class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
           </li>
           <li class="nav-item me-3">
-            <%= link_to 'retired', retired_users_path, class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
+            <%= link_to 'on_leave', users_path(status: 'on_leave'), class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
           </li>
           <li class="nav-item me-3">
-            <%= link_to 'all', all_users_path, class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
+            <%= link_to 'retired', users_path(status: 'retired'), class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
+          </li>
+          <li class="nav-item me-3">
+            <%= link_to 'all', users_path(status: 'all'), class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
           </li>
         <% end %>
       </ul>
@@ -32,7 +35,7 @@
         <td>氏名</td>
         <td>メールアドレス</td>
         <td>権限</td>
-        <td></td>
+        <td>ステータス</td>
         <td></td>
       </tr>
     </thead>
@@ -43,7 +46,7 @@
           <td><%= "#{user.last_name} #{user.first_name}" %></td>
           <td><%= user.email %></td>
           <td><%= user.admin ? '管理者' : '一般' %></td>
-          <td><%= '退職済み' if user.retired? %></td>
+          <td><%= user.status_text %></td>
           <td><%= link_to "詳細", user, class: 'btn btn-outline-secondary', style: '--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;' %></td>
         </tr>
       <% end %>

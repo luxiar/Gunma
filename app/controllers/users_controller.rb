@@ -2,16 +2,16 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = @users.where(status: :active)
-  end
-
-  def retired
-    @users = @users.where(status: :retired)
-    render :index
-  end
-
-  def all
-    render :index
+    case params[:status]
+    when 'on_leave'
+      @users = User.on_leave
+    when 'retired'
+      @users = User.retired
+    when 'all'
+      @users = User.all
+    else
+      @users = User.active
+    end
   end
 
   def show

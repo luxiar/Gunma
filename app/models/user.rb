@@ -17,7 +17,22 @@ class User < ApplicationRecord
     status == 'active'
   end
 
+  def on_leave?
+    status == 'on_leave'
+  end
+
   def retired?
     status == 'retired'
+  end
+
+  def status_text
+    case status
+    when 'active'
+      '在籍'
+    when 'on_leave'
+      '休職中'
+    when 'retired'
+      '退職済み'
+    end
   end
 end

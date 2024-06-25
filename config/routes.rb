@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get "users/retired" => "users#retired", as: :retired_users
-  get "users/all" => "users#all", as: :all_users
   patch "users/:id/retire" => "users#retire", as: :retire_user
   patch "users/:id/restore" => "users#restore", as: :restore_user
 
