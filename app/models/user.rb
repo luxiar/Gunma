@@ -26,13 +26,10 @@ class User < ApplicationRecord
   end
 
   def status_text
-    case status
-    when 'active'
-      '在籍'
-    when 'on_leave'
-      '休職中'
-    when 'retired'
-      '退職済み'
-    end
+    {
+      active: '在籍',
+      on_leave: '休職中',
+      retired: '退職済み'
+    }[status.to_sym]
   end
 end

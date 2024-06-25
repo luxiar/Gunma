@@ -2,16 +2,16 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    case params[:status]
-    when 'on_leave'
-      @users = User.on_leave
-    when 'retired'
-      @users = User.retired
-    when 'all'
-      @users = User.all
-    else
-      @users = User.active
-    end
+    @users = case params[:status]
+             when 'on_leave'
+               User.on_leave
+             when 'retired'
+               User.retired
+             when 'all'
+               User.all
+             else
+               User.active
+             end
   end
 
   def show
@@ -39,31 +39,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def retire
-    if @user.active? && @user.update_without_password(deleted_at: Time.current)
-      redirect_to user_url(@user), notice: 'ユーザーが削除されました'
-    else
-      redirect_to user_url(@user), alert: 'ユーザーの削除に失敗しました'
-    end
-  end
-
-  def restore
-    if @user.retired? && @user.update_without_password(deleted_at: nil)
-      redirect_to user_url(@user), notice: 'ユーザーが復元されました'
-    else
-      redirect_to user_url(@user), alert: 'ユーザーの復元に失敗しました'
-    end
-  end
-
   def destroy
     @user.destroy!
 
-    redirect_to users_url, notice: 'ユーザーが完全に削除されました'
+    redirect_to users_url, notice: 'ユーザーが削除されました'
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :status)
   end
 end

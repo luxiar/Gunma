@@ -14,7 +14,8 @@
     <%= user.admin ? "管理者" : "一般" %>
   </p>
 
-  <% if user.retired? %>
-    <p>退職済み</p>
-  <% end %>
+  <p>
+    <strong>ステータス:</strong>
+    <%= user.status_text %>
+  </p>
 </div>

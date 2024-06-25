@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  patch "users/:id/retire" => "users#retire", as: :retire_user
-  patch "users/:id/restore" => "users#restore", as: :restore_user
-
   resources :daily_reports
   resources :users
   devise_for :user

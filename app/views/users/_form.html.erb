@@ -43,6 +43,21 @@
     </div>
   <% end %>
 
+  <div class="mb-3">
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :status, 'active', class: "form-check-input" %>
+      <%= form.label :status, '在籍中', class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :status, 'on_leave', class: "form-check-input" %>
+      <%= form.label :status, '休職中', class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :status, 'retired', class: "form-check-input" %>
+      <%= form.label :status, '退職済', class: "form-check-label" %>
+    </div>
+  </div>
+
   <div>
     <%= form.submit class: "btn btn-outline-info" %>
   </div>
