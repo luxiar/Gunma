@@ -5,8 +5,8 @@
   </p>
 
   <p>
-    <strong>Content:</strong>
-    <%= daily_report.content %>
+    <strong>Content:</strong><br>
+    <%= h(daily_report.content).gsub(/\R/, '<br>').html_safe %>
   </p>
 
   <p>

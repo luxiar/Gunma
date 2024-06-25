@@ -8,26 +8,44 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-admin_user = User.create!(
-  last_name: 'admin',
-  first_name: 'user',
-  email: 'admin@example.com',
+tsukagoshi = User.create!(
+  last_name: '塚越',
+  first_name: '俊介',
+  email: 'tsukagoshi.shunsuke@example.com',
   password: 'password',
   password_confirmation: 'password',
   admin: true
 )
 
-normal_user = User.create!(
-  last_name: 'normal',
-  first_name: 'user',
-  email: 'normal@example.com',
+yoshino = User.create!(
+  last_name: '吉野',
+  first_name: '輝',
+  email: 'yoshino.akira@example.com',
+  password: 'password',
+  password_confirmation: 'password',
+  admin: false
+)
+
+uyama = User.create!(
+  last_name: '宇山',
+  first_name: '輝',
+  email: 'uyama.hikaru@example.com',
+  password: 'password',
+  password_confirmation: 'password',
+  admin: false
+)
+
+kuboki = User.create!(
+  last_name: '久保木',
+  first_name: '國人',
+  email: 'kuboki.kunito@example.com',
   password: 'password',
   password_confirmation: 'password',
   admin: false
 )
 
 (1..5).each do |i|
-  [admin_user, normal_user].each do |user|
+  [yoshino, uyama, kuboki].each do |user|
     DailyReport.create!(
       title: "title#{i}",
       content: "content#{i}",
@@ -47,4 +65,99 @@ end
     admin: false,
     active: i.odd?
   )
+end
+
+daily_reports = [
+  {
+    title: '6/20',
+    mood: 0,
+    user_id: tsukagoshi.id,
+    content: <<~CONTENT
+      # 6月20日
+      ## 予定
+      - 管理者権限の追加
+      - ユーザー一覧画面の作成
+      - ユーザー新規作成画面の追加
+
+      ## 実績
+      ### 作業完了
+      - 管理者権限の追加
+
+      ### 作業未完了(達成度)
+      - ユーザー一覧画面の作成
+      - ユーザー新規作成画面の追加(20%)
+
+      ## 学んだこと
+      - deviseについて
+      - bootstrapの使い方
+
+      ## 所感
+      - bootstrapを使うとクラスを貼るだけでいい感じにしてくれるので、慣れれば楽そうだと思いました。
+
+      ## 次回作業予定
+      - デザインを考える
+      - 権限の修正
+      - ユーザー新規作成画面の追加
+    CONTENT
+  },
+  {
+    title: '6/21',
+    mood: 1,
+    user_id: tsukagoshi.id,
+    content: <<~CONTENT
+      # 6月21日
+      ## 予定
+      - デザインを考える
+      - 権限の修正
+      - ユーザー新規作成画面の追加
+
+      ## 実績
+      ### 作業完了
+      - デザインを考える
+      - 権限の修正
+
+      ### 作業未完了(達成度)
+      - ユーザー新規作成画面の追加
+
+      ## 学んだこと
+      - bootstrapは色々なテンプレートが作成されているので、自分で考えるよりそれらに従ったほうが良さそうだなと思いました
+
+      ## 所感
+      - bootstrap、簡単にそれっぽくなるので楽しかったです。
+
+      ## 次回作業予定
+      - ユーザーの削除機能の追加
+    CONTENT
+  },
+  {
+    title: '6/24',
+    mood: 2,
+    user_id: tsukagoshi.id,
+    content: <<~CONTENT
+      # 6月24日
+      ## 予定
+      - ユーザーの削除機能の追加
+
+      ## 実績
+      ### 作業完了
+      - ユーザー新規作成画面の追加
+
+      ### 作業未完了(達成度)
+      - ユーザーの削除機能の追加(90%)
+
+      ## 学んだこと
+      - 論理削除について
+      - bootstrapについて
+
+      ## 所感
+      - 少し予定より遅れてしまっているので、遅れた原因や改善策を考えながら進めていきたいです。
+
+      ## 次回作業予定
+      - ユーザーの削除機能の追加
+    CONTENT
+  }
+]
+
+daily_reports.each do |daily_report|
+  DailyReport.create!(daily_report)
 end
