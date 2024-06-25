@@ -42,7 +42,8 @@ normal_user = User.create!(
     email: "user#{i}@example.com",
     password: 'password',
     password_confirmation: 'password',
-    admin: false
+    admin: false,
+    status: :active
   )
 
   User.create!(
@@ -52,6 +53,6 @@ normal_user = User.create!(
     password: 'password',
     password_confirmation: 'password',
     admin: false,
-    deleted_at: Time.current
+    status: :retired
   )
 end

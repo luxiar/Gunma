@@ -11,11 +11,13 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :first_name, presence: true
 
+  enum :status, %i[active on_leave retired]
+
   def active?
-    deleted_at.nil?
+    status == 'active'
   end
 
   def retired?
-    deleted_at.present?
+    status == 'retired'
   end
 end

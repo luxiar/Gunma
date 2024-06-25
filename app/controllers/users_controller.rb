@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = @users.where(deleted_at: nil)
+    @users = @users.where(status: :active)
   end
 
   def retired
-    @users = @users.where.not(deleted_at: nil)
+    @users = @users.where(status: :retired)
     render :index
   end
 
