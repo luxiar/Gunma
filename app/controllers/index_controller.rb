@@ -6,13 +6,13 @@ class IndexController < ApplicationController
       @daily_reports = DailyReport.all.order(created_at: :desc).limit(5)
     else
       @daily_reports = []
-      user = User.new
+      user = User.new(last_name: 'example', first_name: 'user')
       (1..5).each do |i|
         @daily_reports << DailyReport.new(
           title: "example_title#{i}",
           content: "example_content#{i}",
           mood: i % 3,
-          user: user
+          user:
         )
       end
     end

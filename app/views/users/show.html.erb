@@ -12,9 +12,4 @@
 
 <h2 class="mt-5"><%= @daily_reports.present? ? '最新の日報' : 'まだ日報を作成していません' %></h2>
 
-<% @daily_reports.each do |daily_report| %>
-  <%= render partial: 'daily_reports/daily_report', locals: { daily_report: daily_report } %>
-  <p>
-    <%= link_to "Show this daily report", daily_report %>
-  </p>
-<% end %>
+<%= render partial: 'daily_reports/daily_reports', locals: {daily_reports: @daily_reports} %>
