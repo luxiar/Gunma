@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.admin? ? @user.update_without_password(user_params_without_password) : @user.update(user_params)
+    if admin_edit_other_user(@user) ? @user.update_without_password(user_params_without_password) : @user.update(user_params)
       redirect_to user_url(@user), notice: 'ユーザーが更新されました'
     else
       render :edit, status: :unprocessable_entity
