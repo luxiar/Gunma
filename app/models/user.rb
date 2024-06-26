@@ -11,25 +11,15 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :first_name, presence: true
 
-  enum :status, %i[active on_leave retired]
-
   def active?
-    status == 'active'
-  end
-
-  def on_leave?
-    status == 'on_leave'
+    active
   end
 
   def retired?
-    status == 'retired'
+    !active
   end
 
   def status_text
-    {
-      active: '在籍',
-      on_leave: '休職中',
-      retired: '退職済み'
-    }[status.to_sym]
+    active? ? '在職' : '退職済み'
   end
 end

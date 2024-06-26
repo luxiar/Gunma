@@ -45,6 +45,6 @@ end
     password: 'password',
     password_confirmation: 'password',
     admin: false,
-    status: i % 3
+    active: i % 2 == 0
   )
 end

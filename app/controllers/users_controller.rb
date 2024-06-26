@@ -2,16 +2,8 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = case params[:status]
-             when 'on_leave'
-               User.on_leave
-             when 'retired'
-               User.retired
-             when 'all'
-               User.all
-             else
-               User.active
-             end
+    params[:status] ||= 'active'
+    @users = @users.where(active: params[:status] == 'active') unless params[:status] == 'all'
   end
 
   def show
