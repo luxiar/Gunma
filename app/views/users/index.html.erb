@@ -1,9 +1,27 @@
-<div class="d-flex justify-content-between align-items-center ">
+<div class="d-flex justify-content-between align-items-center">
   <h1>ユーザー一覧</h1>
   <% if can? :create, User %>
     <%= link_to "新規ユーザー", new_user_path, class: 'btn btn-outline-info' %>
   <% end %>
 </div>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-lg-0">
+        <li class="nav-item me-3">
+          <%= link_to 'active', users_path, class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
+        </li>
+        <li class="nav-item me-3">
+          <%= link_to 'retired', users_path(status: 'retired'), class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
+        </li>
+        <li class="nav-item me-3">
+          <%= link_to 'all', users_path(status: 'all'), class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <div id="users">
   <table class="table">
@@ -11,7 +29,8 @@
       <tr>
         <td>氏名</td>
         <td>メールアドレス</td>
-        <td>管理者</td>
+        <td>権限</td>
+        <td>ステータス</td>
         <td></td>
       </tr>
     </thead>
@@ -22,7 +41,8 @@
           <td><%= "#{user.last_name} #{user.first_name}" %></td>
           <td><%= user.email %></td>
           <td><%= user.admin ? '管理者' : '一般' %></td>
-          <td><%= link_to "ユーザー詳細へ", user, class: 'btn btn-outline-secondary', style: '--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;' %></td>
+          <td><%= user.status_text %></td>
+          <td><%= link_to "詳細", user, class: 'btn btn-outline-secondary', style: '--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;' %></td>
         </tr>
       <% end %>
     </tbody>

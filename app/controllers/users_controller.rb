@@ -1,22 +1,20 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
 
-  # GET /users or /users.json
-  def index; end
+  def index
+    params[:status] ||= 'active'
+    @users = @users.where(active: params[:status] == 'active') unless params[:status] == 'all'
+  end
 
-  # GET /users/1 or /users/1.json
   def show
     @user ||= current_user
     @daily_reports = @user.daily_reports.order(created_at: :desc).limit(5)
   end
 
-  # GET /users/new
   def new; end
 
-  # GET /users/1/edit
   def edit; end
 
-  # POST /users or /users.json
   def create
     if @user.save
       redirect_to user_url(@user), notice: 'ユーザーが作成されました'
@@ -25,16 +23,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1 or /users/1.json
   def update
-    if @user.update(user_params)
+    if view_context.admin_edit_other_user?(@user) ? @user.update_without_password(user_params) : @user.update(user_params)
       redirect_to user_url(@user), notice: 'ユーザーが更新されました'
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy!
 
@@ -43,8 +39,7 @@ class UsersController < ApplicationController
 
   private
 
-  # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :active)
   end
 end

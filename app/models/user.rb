@@ -10,4 +10,20 @@ class User < ApplicationRecord
 
   validates :last_name, presence: true
   validates :first_name, presence: true
+
+  def retired?
+    !active
+  end
+
+  def status_text
+    active? ? '在職' : '退職済み'
+  end
+
+  def active_for_authentication?
+    super && active?
+  end
+
+  def inactive_message
+    active? ? super : :retired
+  end
 end
