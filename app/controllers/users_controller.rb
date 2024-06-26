@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user ||= current_user
     @daily_reports = @user.daily_reports.order(created_at: :desc).limit(5)
   end
 

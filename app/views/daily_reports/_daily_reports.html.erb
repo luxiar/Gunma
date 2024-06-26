@@ -1,0 +1,6 @@
+<% daily_reports.each do |daily_report| %>
+  <%= render partial: 'daily_reports/daily_report', locals: { daily_report: daily_report } %>
+  <p>
+    <%= link_to "Show this daily report", daily_report %>
+  </p>
+<% end %>
