@@ -9,17 +9,15 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav me-auto mb-lg-0">
-        <% if user_signed_in? %>
-          <li class="nav-item me-3">
-            <%= link_to 'active', users_path, class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
-          </li>
-          <li class="nav-item me-3">
-            <%= link_to 'retired', users_path(status: 'retired'), class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
-          </li>
-          <li class="nav-item me-3">
-            <%= link_to 'all', users_path(status: 'all'), class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
-          </li>
-        <% end %>
+        <li class="nav-item me-3">
+          <%= link_to 'active', users_path, class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
+        </li>
+        <li class="nav-item me-3">
+          <%= link_to 'retired', users_path(status: 'retired'), class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
+        </li>
+        <li class="nav-item me-3">
+          <%= link_to 'all', users_path(status: 'all'), class: "nav-link text-muted fw-bold nav-link-hover-opacity" %>
+        </li>
       </ul>
     </div>
   </div>

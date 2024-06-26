@@ -45,6 +45,6 @@ end
     password: 'password',
     password_confirmation: 'password',
     admin: false,
-    active: i % 2 == 0
+    active: i.odd?
   )
 end

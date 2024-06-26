@@ -1,6 +1,6 @@
 <h1>ユーザー編集</h1>
 
-<%= render "form", user: @user %>
+<%= render partial: "form", locals: {user: @user, password_not_required: @user != current_user && current_user.admin?} %>
 
 <br>
 
