@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Gunma</title>
+    <title>RepoLog</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,7 +14,7 @@
     <header>
       <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
-          <%= link_to 'Gunma', daily_reports_path, class: 'navbar-brand' %>
+          <%= link_to 'Gunma', root_path, class: 'navbar-brand' %>
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav me-auto mb-lg-0">
               <% if user_signed_in? %>

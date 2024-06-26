@@ -4,7 +4,7 @@ class DailyReportsController < ApplicationController
 
   # GET /daily_reports or /daily_reports.json
   def index
-    @daily_reports = DailyReport.all
+    @daily_reports = DailyReport.all.includes(:user)
   end
 
   # GET /daily_reports/1 or /daily_reports/1.json

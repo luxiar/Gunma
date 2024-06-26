@@ -19,6 +19,10 @@ class User < ApplicationRecord
     active? ? '在職' : '退職済み'
   end
 
+  def full_name
+    "#{last_name} #{first_name}"
+  end
+
   def active_for_authentication?
     super && active?
   end

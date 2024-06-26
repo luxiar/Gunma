@@ -1,0 +1,14 @@
+<div class="text-center mb-5">
+  <h1>Gunma</h1>
+  <p class="lead">過去の日報を検索して参考にできるサイトです</p>
+</div>
+
+<%= render partial: 'daily_reports/daily_reports', locals: {daily_reports: @daily_reports} %>
+
+<div class="text-center mt-5">
+  <% if user_signed_in? %>
+    <%= link_to '全ての日報を見る', daily_reports_path, class: "btn btn-outline-secondary" %>
+  <% else %>
+    <%= link_to 'ログインして日報を見る', new_user_session_path, class: "btn btn-outline-secondary" %>
+  <% end %>
+</div>
