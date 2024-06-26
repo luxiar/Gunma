@@ -3,7 +3,7 @@ class IndexController < ApplicationController
 
   def index
     if user_signed_in?
-      @daily_reports = DailyReport.all.order(created_at: :desc).limit(5)
+      @daily_reports = DailyReport.all.order(created_at: :desc).limit(5).includes(:user)
     else
       @daily_reports = []
       user = User.new(last_name: 'example', first_name: 'user')

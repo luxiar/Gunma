@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @daily_reports = @user.daily_reports.order(created_at: :desc).limit(5)
+    @daily_reports = @user.daily_reports.order(created_at: :desc).limit(5).includes(:user)
   end
 
   def new; end
