@@ -1,13 +1,12 @@
 class DailyReportsController < ApplicationController
   load_and_authorize_resource
-  skip_load_resource :only => :index
 
   def index
-    if params[:search].present?
-      @daily_reports = DailyReport.where(search_params).order(created_at: :desc).includes(:user)
-    else
-      @daily_reports = DailyReport.all.limit(10).order(created_at: :desc).includes(:user)
-    end
+    @daily_reports = @daily_reports.includes(:user).order(created_at: :desc)
+
+    @daily_reports = @daily_reports.where(search_params) if params[:search].present?
+
+    @daily_reports = @daily_reports.page(params[:page])
   end
 
   def show; end
