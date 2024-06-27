@@ -1,4 +1,4 @@
-<div>
+<div class="text-center">
   <%= render @user %>
 
   <% if can? :edit, @user %>
@@ -10,6 +10,17 @@
   <% end %>
 </div>
 
-<h2 class="mt-5"><%= @daily_reports.present? ? '最新の日報' : 'まだ日報を作成していません' %></h2>
+<div class="border-bottom mt-5 mb-5"></div>
+
+<h2 class="mb-3"><%= @daily_reports.present? ? '' : 'まだ日報を作成していません' %></h2>
 
 <%= render partial: 'daily_reports/daily_reports', locals: {daily_reports: @daily_reports} %>
+
+<div class="mt-4 text-center">
+  <% if @user == current_user %>
+    <%= link_to '日報を作成する', new_daily_report_path, class: "btn btn-outline-info" %>
+  <% end %>
+  <% if @daily_reports.size == 5 %>
+    <%= link_to 'すべて見る', daily_reports_path(user: @user), class: "btn btn-outline-secondary" %>
+  <% end %>
+</div>

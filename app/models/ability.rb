@@ -7,25 +7,16 @@ class Ability
     return if user.blank?
 
     # 日報
-    # 退社してたら閲覧のみ可能
-    can :read, DailyReport
+    can %i[read create], DailyReport
+    can %i[update destroy], DailyReport, user_id: user.id
 
-    if user.active?
-      # ログインしていれば閲覧、作成可能
-      can :create, DailyReport
-      # 自分のもののみ編集、削除可能
-      can %i[update destroy], DailyReport, user_id: user.id
-    end
-
-    # ユーザー情報
-    # 退社してたら閲覧のみ可能
-    can %i[read retired all], User
-
-    # 入社してたら自分を編集可能
-    can :update, User, id: user.id if user.active?
+    # ユーザー
+    can :read, User
+    can :update, User, id: user.id
 
     # 管理者は全て許可
     can :manage, :all if user.admin?
+
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?

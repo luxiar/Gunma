@@ -44,7 +44,7 @@ kuboki = User.create!(
   admin: false
 )
 
-(1..5).each do |i|
+(1..10).each do |i|
   [yoshino, uyama, kuboki].each do |user|
     DailyReport.create!(
       title: "title#{i}",
@@ -53,9 +53,7 @@ kuboki = User.create!(
       user_id: user.id
     )
   end
-end
 
-(1..10).each do |i|
   User.create!(
     last_name: 'normal',
     first_name: "user#{i}",

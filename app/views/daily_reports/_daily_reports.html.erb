@@ -2,16 +2,11 @@
   <% daily_reports.each do |daily_report| %>
     <div class="col">
       <div class="card h-100">
-        <div class="card-body overflow-auto">
+        <%= link_to daily_report, class: "card-body overflow-auto link-underline link-underline-opacity-0" do %>
           <h5 class="card-title"><%= daily_report.title %></h5>
           <h6 class="card-subtitle mb-2 text-muted">作成者：<%= daily_report.user.full_name %></h6>
           <div class="overflow-auto flex-grow-1" style="max-height: 150px;">
             <p class="card-text"><%= simple_format(daily_report.content) %></p>
-          </div>
-        </div>
-        <% if user_signed_in? %>
-          <div class="card-footer bg-transparent border-top-0">
-            <%= link_to "詳細", daily_report, class: "btn btn-outline-info" %>
           </div>
         <% end %>
       </div>
