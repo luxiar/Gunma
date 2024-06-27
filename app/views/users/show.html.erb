@@ -12,7 +12,9 @@
 
 <div class="border-bottom mt-5 mb-5"></div>
 
-<h2 class="mb-3"><%= @daily_reports.present? ? '' : 'まだ日報を作成していません' %></h2>
+<% if @daily_reports.blank? %>
+  <h2 class="mb-3">まだ日報を作成していません</h2>
+<% end %>
 
 <%= render partial: 'daily_reports/daily_reports', locals: {daily_reports: @daily_reports} %>
 
