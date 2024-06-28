@@ -16,8 +16,9 @@ class DailyReportsController < ApplicationController
   def edit; end
 
   def create
+    @daily_report.user = current_user
     if @daily_report.save
-      redirect_to daily_report_url(@daily_report), notice: 'Daily report was successfully created.'
+      redirect_to daily_report_url(@daily_report), notice: '日報が作成されました'
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +26,7 @@ class DailyReportsController < ApplicationController
 
   def update
     if @daily_report.update(daily_report_params)
-      redirect_to daily_report_url(@daily_report), notice: 'Daily report was successfully updated.'
+      redirect_to daily_report_url(@daily_report), notice: '日報が更新されました'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -34,7 +35,7 @@ class DailyReportsController < ApplicationController
   def destroy
     @daily_report.destroy!
 
-    redirect_to daily_reports_url, notice: 'Daily report was successfully destroyed.'
+    redirect_to daily_reports_url, notice: '日報が削除されました'
   end
 
   private

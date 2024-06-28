@@ -7,4 +7,6 @@ class DailyReport < ApplicationRecord
   has_many :commented_users, through: :comments, source: :user
 
   enum :mood, %i[normal fun productive sleepy unwell]
+
+  validates :title, presence: true
 end
