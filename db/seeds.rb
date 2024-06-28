@@ -44,7 +44,7 @@ kuboki = User.create!(
   admin: false
 )
 
-(1..10).each do |i|
+(1..15).each do |i|
   [yoshino, uyama, kuboki].each do |user|
     DailyReport.create!(
       title: "title#{i}",

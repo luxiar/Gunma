@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <header>
+    <header class="sticky-top">
       <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
           <%= link_to 'Gunma', root_path, class: 'navbar-brand' %>
@@ -26,6 +26,9 @@
                 </li>
                 <li class="nav-item">
                   <%= link_to 'プロフィール', user_path(current_user.id), class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '新規日報', new_daily_report_path, class: "nav-link" %>
                 </li>
               <% end %>
             </ul>

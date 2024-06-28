@@ -2,8 +2,11 @@ class DailyReportsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @daily_reports = @daily_reports.includes(:user)
-    @daily_reports = @daily_reports.where(user: params[:user]) if params[:user].present?
+    @daily_reports = @daily_reports.includes(:user).order(created_at: :desc)
+
+    @daily_reports = @daily_reports.where(search_params) if params[:search].present?
+
+    @daily_reports = @daily_reports.page(params[:page])
   end
 
   def show; end
@@ -38,5 +41,9 @@ class DailyReportsController < ApplicationController
 
   def daily_report_params
     params.require(:daily_report).permit(:title, :content, :mood)
+  end
+
+  def search_params
+    params.require(:search).permit(:user)
   end
 end
