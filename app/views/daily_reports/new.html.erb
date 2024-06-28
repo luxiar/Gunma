@@ -1,9 +1,11 @@
-<h1>新しい日報</h1>
+<div class="col-md-8 m-auto">
+  <h1>新しい日報</h1>
 
-<%= render "form", daily_report: @daily_report %>
+  <%= render "form", daily_report: @daily_report %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "戻る", daily_reports_path, class: "btn btn-outline-secondary" %>
+  <div>
+    <%= link_to "日報一覧へ", daily_reports_path, class: "btn btn-outline-secondary" %>
+  </div>
 </div>
