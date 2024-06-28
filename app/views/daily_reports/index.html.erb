@@ -1,14 +1,11 @@
-<div class="text-center mb-5">
-  <h1>日報一覧</h1>
-  <%= link_to "新規日報", new_daily_report_path, class: 'btn btn-outline-info' %>
-</div>
+<h1 class="text-center mb-5">日報一覧</h1>
 
 <div class="row row-cols-1">
-  <div class="col-md-8 offset-md-2">
+  <div class="col-md-8 m-auto">
     <% @daily_reports.each do |daily_report| %>
       <div class="card mb-2">
         <div class="card-body">
-          <h5 class="card-title"><%= link_to daily_report.title, daily_report, class: "link-dark link-underline link-underline-opacity-0 stretched-link" %></h5>
+          <h2 class="card-title"><%= link_to daily_report.title, daily_report, class: "h5 link-dark link-underline link-underline-opacity-0 stretched-link" %></h2>
           <p class="card-text">
             <small class="text-muted">
               <%= link_to daily_report.user.full_name, user_path(daily_report.user), class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
