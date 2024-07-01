@@ -3,8 +3,7 @@
 <%= render @daily_report %>
 
 <div>
-  <%= link_to "Edit this daily report", edit_daily_report_path(@daily_report) %> |
-  <%= link_to "Back to daily reports", daily_reports_path %>
+  <%= link_to "Edit this daily report", edit_daily_report_path(@daily_report) %>
 
   <%= button_to "Destroy this daily report", @daily_report, method: :delete %>
 </div>

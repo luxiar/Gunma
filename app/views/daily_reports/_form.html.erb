@@ -24,23 +24,23 @@
   <div class="mb-3">
     <div class="form-check form-check-inline">
       <%= form.radio_button :mood, "normal", class: "form-check-input" %>
-      <%= form.label :mood, "まあまあ", class: "form-check-label" %>
+      <%= form.label :mood_normal, "まあまあ", class: "form-check-label" %>
     </div>
     <div class="form-check form-check-inline">
       <%= form.radio_button :mood, "fun", class: "form-check-input" %>
-      <%= form.label :mood, "楽しかった", class: "form-check-label" %>
+      <%= form.label :mood_fun, "楽しかった", class: "form-check-label" %>
     </div>
     <div class="form-check form-check-inline">
       <%= form.radio_button :mood, "productive", class: "form-check-input" %>
-      <%= form.label :mood, "捗った", class: "form-check-label" %>
+      <%= form.label :mood_productive, "捗った", class: "form-check-label" %>
     </div>
     <div class="form-check form-check-inline">
       <%= form.radio_button :mood, "sleepy", class: "form-check-input" %>
-      <%= form.label :mood, "眠かった", class: "form-check-label" %>
+      <%= form.label :mood_sleepy, "眠かった", class: "form-check-label" %>
     </div>
     <div class="form-check form-check-inline">
       <%= form.radio_button :mood, "unwell", class: "form-check-input" %>
-      <%= form.label :mood, "体調不良", class: "form-check-label" %>
+      <%= form.label :mood_unwell, "体調不良", class: "form-check-label" %>
     </div>
   </div>
 
