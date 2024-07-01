@@ -3,6 +3,14 @@
     <%= daily_report.title %>
   </h1>
 
+  <p>
+    <% daily_report.learned_tags.each do |tag| %>
+      <span>
+        <%= tag.name %>
+      </span>
+    <% end %>
+  </p>
+
   <p class="mb-4">
     <span class="small">
       <%= link_to daily_report.user.full_name, user_path(daily_report.user), class: "link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>

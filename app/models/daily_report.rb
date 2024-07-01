@@ -1,5 +1,6 @@
 class DailyReport < ApplicationRecord
   belongs_to :user
+  has_many :daily_reports_learned_tags, dependent: :destroy
   has_many :learned_tags, through: :daily_reports_learned_tags
   has_many :thumbs_ups, dependent: :destroy
   has_many :liked_users, through: :thumbs_ups, source: :user
@@ -18,5 +19,9 @@ class DailyReport < ApplicationRecord
       sleepy: '眠かった',
       unwell: '体調不良'
     }[mood.to_sym]
+  end
+
+  def learned_tags_str
+    learned_tags.map(&:name).join(',')
   end
 end

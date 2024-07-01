@@ -22,6 +22,11 @@
   </div>
 
   <div class="mb-3">
+    <%= form.label :learned_tags, "タグ(,で区切って入力してください)", class: "form-label" %>
+    <%= form.text_field :learned_tags, value: daily_report.learned_tags_str, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
     <div class="form-check form-check-inline">
       <%= form.radio_button :mood, "normal", class: "form-check-input" %>
       <%= form.label :mood_normal, "まあまあ", class: "form-check-label" %>

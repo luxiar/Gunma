@@ -156,6 +156,11 @@ daily_reports = [
   }
 ]
 
+['html', 'css', 'javascript'].each do |tag|
+  LearnedTag.create!(name: tag)
+end
+
 daily_reports.each do |daily_report|
-  DailyReport.create!(daily_report)
+  id = DailyReport.create!(daily_report).id
+  DailyReportsLearnedTag.create!(daily_report_id: id, learned_tag_id: id % 3 + 1)
 end
