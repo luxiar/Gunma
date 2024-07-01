@@ -12,7 +12,7 @@ class DailyReport < ApplicationRecord
 
   def mood_ja
     {
-      normal: '普通',
+      normal: 'まあまあ',
       fun: '楽しかった',
       productive: '捗った',
       sleepy: '眠かった',

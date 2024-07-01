@@ -10,10 +10,10 @@
         <div class="card-body">
           <h2 class="card-title"><%= link_to daily_report.title, daily_report, class: "h5 link-dark link-underline link-underline-opacity-0 stretched-link" %></h2>
           <p class="card-text">
-            <small class="text-muted">
+            <span class="small text-muted">
               <%= link_to daily_report.user.full_name, user_path(daily_report.user), class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
               <%= l daily_report.created_at %>
-            </small>
+            </span>
             <span class="badge rounded-pill <%= "mood-#{daily_report.mood}" %>">
               <%= daily_report.mood_ja %>
             </span>

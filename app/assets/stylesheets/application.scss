@@ -10,27 +10,21 @@
   border-color: gray;
 }
 
-.mood-normal {
+.mood {
   color: white;
-  background-color: #59b644;
-}
-
-.mood-fun {
-  color: white;
-  background-color: #e67e22;
-}
-
-.mood-productive {
-  color: white;
-  background-color: #3ec8dd;
-}
-
-.mood-sleepy {
-  color: white;
-  background-color: #9b59b6;
-}
-
-.mood-unwell {
-  color: white;
-  background-color: #6e6e6e;
+  &-normal {
+    background-color: #59b644;
+  }
+  &-fun {
+    background-color: #e67e22;
+  }
+  &-productive {
+    background-color: #3ec8dd;
+  }
+  &-sleepy {
+    background-color: #9b59b6;
+  }
+  &-unwell {
+    background-color: #6e6e6e;
+  }
 }
