@@ -46,5 +46,9 @@
 
   <div>
     <%= form.submit class: "btn btn-outline-info" %>
+    <% if daily_report.persisted? %>
+      <%= link_to "戻る", daily_report_path(daily_report), class: 'btn btn-outline-secondary' %>
+      <%= link_to "削除", daily_report, data: { turbo_method: :delete, confirm: "本当に削除しますか？" }, class: 'btn btn-outline-danger' %>
+    <% end %>
   </div>
 <% end %>

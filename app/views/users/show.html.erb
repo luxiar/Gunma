@@ -4,9 +4,6 @@
   <% if can? :edit, @user %>
     <%= link_to "編集", edit_user_path(@user), class: 'btn btn-outline-info' %>
   <% end %>
-  <% if (can? :destroy, @user) && @user != current_user %>
-    <%= link_to "削除", @user, data: { turbo_method: :delete }, class: 'btn btn-outline-danger', onclick: "return confirm('本当に削除しますか？')" %>
-  <% end %>
 </div>
 
 <div class="border-bottom mt-5 mb-5"></div>

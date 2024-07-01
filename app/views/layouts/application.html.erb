@@ -33,11 +33,6 @@
               <% end %>
             </ul>
             <ul class="navbar-nav">
-              <% unless action_name == 'index' %>
-                <li class="nav-item">
-                  <%= link_to '一覧に戻る', index_path, class: 'nav-link' %>
-                </li>
-              <% end %>
               <% if user_signed_in? %>
                 <li class="nav-item">
                   <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "ログアウトします。よろしいですか？" }, class: "nav-link" %>
