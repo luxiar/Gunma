@@ -1,12 +1,6 @@
-<h1>ユーザー編集</h1>
+<div class="d-flex justify-content-between align-items-center">
+  <h1>ユーザー編集</h1>
+  <%= link_to "一覧に戻る", users_path, class: 'btn btn-outline-secondary' %>
+</div>
 
 <%= render partial: "form", locals: {user: @user, password_not_required: admin_edit_other_user?(@user)} %>
-
-<br>
-
-<div>
-  <%= link_to "戻る", user_path(@user), class: 'btn btn-outline-secondary' %>
-  <% if (can? :destroy, @user) && @user != current_user %>
-    <%= link_to "削除", @user, data: { turbo_method: :delete }, class: 'btn btn-outline-danger' %>
-  <% end %>
-</div>

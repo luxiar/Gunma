@@ -9,12 +9,17 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       user: 'ユーザー'
+      daily_report: '日報'
     attributes:
       user:
         first_name: '名前'
         last_name: '苗字'
         email: 'メールアドレス'
         password: 'パスワード'
+      daily_report:
+        title: 'タイトル'
+        content: '本文'
+        mood: '気分'
   date:
     abbr_day_names:
     - 日

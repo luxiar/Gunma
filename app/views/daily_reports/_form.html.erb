@@ -11,22 +11,44 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :content, class: "form-label" %>
+    <%= form.text_area :content, class: "form-control", rows: 10 %>
+  </div>
+
+  <div class="mb-3">
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :mood, "normal", class: "form-check-input" %>
+      <%= form.label :mood_normal, "まあまあ", class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :mood, "fun", class: "form-check-input" %>
+      <%= form.label :mood_fun, "楽しかった", class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :mood, "productive", class: "form-check-input" %>
+      <%= form.label :mood_productive, "捗った", class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :mood, "sleepy", class: "form-check-input" %>
+      <%= form.label :mood_sleepy, "眠かった", class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :mood, "unwell", class: "form-check-input" %>
+      <%= form.label :mood_unwell, "体調不良", class: "form-check-label" %>
+    </div>
   </div>
 
   <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_field :content %>
-  </div>
-
-  <div>
-    <%= form.label :mood, style: "display: block" %>
-    <%= form.text_field :mood %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-outline-info" %>
+    <% if daily_report.persisted? %>
+      <%= link_to "戻る", daily_report_path(daily_report), class: 'btn btn-outline-secondary' %>
+      <%= link_to "削除", daily_report, data: { turbo_method: :delete, confirm: "本当に削除しますか？" }, class: 'btn btn-outline-danger' %>
+    <% end %>
   </div>
 <% end %>

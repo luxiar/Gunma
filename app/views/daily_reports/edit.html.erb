@@ -1,10 +1,8 @@
-<h1>Editing daily report</h1>
+<div class="col-md-8 m-auto">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>日報の編集</h1>
+    <%= link_to "一覧に戻る", daily_reports_path, class: 'btn btn-outline-secondary' %>
+  </div>
 
-<%= render "form", daily_report: @daily_report %>
-
-<br>
-
-<div>
-  <%= link_to "Show this daily report", @daily_report %> |
-  <%= link_to "Back to daily reports", daily_reports_path %>
+  <%= render "form", daily_report: @daily_report %>
 </div>
