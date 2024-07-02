@@ -1,28 +1,37 @@
-<div class="d-flex justify-content-between align-items-center mb-5 col-md-8 m-auto">
-  <h1>日報一覧</h1>
-  <%= link_to "新規日報", new_daily_report_path, class: 'btn btn-outline-info' %>
-</div>
+<div class="col-md-8 m-auto">
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h1>日報一覧</h1>
+    <%= link_to "新規日報", new_daily_report_path, class: 'btn btn-outline-info' %>
+  </div>
 
-<div class="row row-cols-1">
-  <div class="col-md-8 m-auto">
-    <% @daily_reports.each do |daily_report| %>
-      <div class="card mb-2">
-        <div class="card-body">
-          <h2 class="card-title"><%= link_to daily_report.title, daily_report, class: "h5 link-dark link-underline link-underline-opacity-0 stretched-link" %></h2>
-          <p class="card-text">
-            <span class="small text-muted">
-              <%= link_to daily_report.user.full_name, user_path(daily_report.user), class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
-              <%= l daily_report.created_at %>
-            </span>
-            <span class="badge rounded-pill <%= "mood-#{daily_report.mood}" %>">
-              <%= daily_report.mood_ja %>
-            </span>
-          </p>
-        </div>
+  <% @filters.each do |filter| %>
+    <p>
+      <span class="small"><%= filter %></span>
+    </p>
+  <% end %>
+
+  <% @daily_reports.each do |daily_report| %>
+    <div class="card mb-2">
+      <div class="card-body pt-2">
+        <h2 class="card-title"><%= link_to daily_report.title, daily_report, class: "h5 link-dark link-underline link-underline-opacity-0 stretched-link" %></h2>
+        <p class="card-subtitle">
+          <span class="small">
+            <%= link_to daily_report.user.full_name, user_path(daily_report.user), class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
+            <%= l daily_report.created_at %>
+          </span>
+          <span class="badge rounded-pill <%= "mood-#{daily_report.mood}" %>">
+            <%= daily_report.mood_ja %>
+          </span>
+          <span class="small">
+            <% daily_report.learned_tags.each do |tag| %>
+              <%= link_to tag.name, daily_reports_path(filter: {learned_tag_id: tag.id}), class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
+            <% end %>
+          </span>
+        </p>
       </div>
-    <% end %>
-    <div class="mt-3 mb-5">
-      <%= paginate @daily_reports %>
     </div>
+  <% end %>
+  <div class="mt-3 mb-5">
+    <%= paginate @daily_reports %>
   </div>
 </div>

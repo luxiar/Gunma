@@ -44,16 +44,29 @@ kuboki = User.create!(
   admin: false
 )
 
-(1..15).each do |i|
+learned_tags = ['html', 'css', 'javascript', 'ruby', 'rails', 'sinatra', 'c', 'c#', 'c++', 'java', 'python', 'php'].map do |tag|
+  LearnedTag.create!(name: tag)
+end
+
+(1..10).each do |i|
   [yoshino, uyama, kuboki].each do |user|
-    DailyReport.create!(
+    daily_report = DailyReport.create!(
       title: "title#{i}",
       content: "content#{i}",
       mood: i % 5,
       user_id: user.id
     )
-  end
 
+    learned_tags.sample(3).each do |tag|
+      DailyReportsLearnedTag.create!(
+        daily_report_id: daily_report.id,
+        learned_tag_id: tag.id
+      )
+    end
+  end
+end
+
+(1..6).each do |i|
   User.create!(
     last_name: 'normal',
     first_name: "user#{i}",
@@ -156,11 +169,6 @@ daily_reports = [
   }
 ]
 
-['html', 'css', 'javascript'].each do |tag|
-  LearnedTag.create!(name: tag)
-end
-
 daily_reports.each do |daily_report|
-  id = DailyReport.create!(daily_report).id
-  DailyReportsLearnedTag.create!(daily_report_id: id, learned_tag_id: id % 3 + 1)
+  DailyReport.create!(daily_report).id
 end

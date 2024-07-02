@@ -5,9 +5,7 @@
 
   <p>
     <% daily_report.learned_tags.each do |tag| %>
-      <span>
-        <%= tag.name %>
-      </span>
+      <%= link_to tag.name, daily_reports_path(filter: {learned_tag_id: tag.id}), class: "link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" %>
     <% end %>
   </p>
 

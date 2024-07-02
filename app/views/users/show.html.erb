@@ -19,6 +19,6 @@
     <%= link_to '日報を作成する', new_daily_report_path, class: "btn btn-outline-info" %>
   <% end %>
   <% if @daily_reports.size == 5 %>
-    <%= link_to 'すべて見る', daily_reports_path(search: {user: @user}), class: "btn btn-outline-secondary" %>
+    <%= link_to 'すべて見る', daily_reports_path(filter: {user_id: @user.id}), class: "btn btn-outline-secondary" %>
   <% end %>
 </div>
