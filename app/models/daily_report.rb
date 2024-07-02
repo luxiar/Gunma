@@ -9,4 +9,14 @@ class DailyReport < ApplicationRecord
   enum :mood, %i[normal fun productive sleepy unwell]
 
   validates :title, presence: true
+
+  def mood_ja
+    {
+      normal: 'まあまあ',
+      fun: '楽しかった',
+      productive: '捗った',
+      sleepy: '眠かった',
+      unwell: '体調不良'
+    }[mood.to_sym]
+  end
 end

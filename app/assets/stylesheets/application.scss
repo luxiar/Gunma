@@ -9,3 +9,22 @@
   box-shadow: 3px 3px 3px lightgray;
   border-color: gray;
 }
+
+.mood {
+  color: white;
+  &-normal {
+    background-color: #59b644;
+  }
+  &-fun {
+    background-color: #e67e22;
+  }
+  &-productive {
+    background-color: #3ec8dd;
+  }
+  &-sleepy {
+    background-color: #9b59b6;
+  }
+  &-unwell {
+    background-color: #6e6e6e;
+  }
+}
