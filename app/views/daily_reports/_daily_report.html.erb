@@ -9,15 +9,28 @@
     <% end %>
   </p>
 
-  <p class="mb-4">
-    <span class="small">
-      <%= link_to daily_report.user.full_name, user_path(daily_report.user), class: "link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
-      <%= l daily_report.created_at %>
-    </span>
-    <span class="badge rounded-pill <%= "mood-#{daily_report.mood}" %>">
-      <%= daily_report.mood_ja %>
-    </span>
-  </p>
+  <div class="d-flex justify-content-between align-items-center">
+    <p class="mb-4">
+      <span class="small">
+        <%= link_to daily_report.user.full_name, user_path(daily_report.user), class: "link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+        <%= l daily_report.created_at %>
+      </span>
+      <span class="badge rounded-pill <%= "mood-#{daily_report.mood}" %>">
+        <%= daily_report.mood_ja %>
+      </span>
+    </p>
+
+    <p>
+      <% if daily_report.can_thumbs_up?(current_user) %>
+        <%= link_to "いいね", daily_report_thumbs_up_path(daily_report), data: { turbo_method: :post }, class: "btn btn-outline-secondary rounded-pill" %>
+      <% else %>
+        <%= link_to "いいね", daily_report_thumbs_up_path(daily_report), data: { turbo_method: :delete }, class: "btn btn-outline-info rounded-pill" %>
+      <% end %>
+      <%= daily_report.thumbs_ups.count %>
+    </p>
+  </div>
+
+  
 
   <p>
     <%= h(daily_report.content).gsub(/\R/, '<br>').html_safe %>

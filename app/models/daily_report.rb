@@ -26,4 +26,8 @@ class DailyReport < ApplicationRecord
   def learned_tags_str
     learned_tags.map(&:name).join(',')
   end
+
+  def can_thumbs_up?(user)
+    !liked_users.include?(user)
+  end
 end

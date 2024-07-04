@@ -48,7 +48,7 @@ class DailyReportsController < ApplicationController
 
   def register_learned_tags
     learned_tags = params[:learned_tags].split(/[,、]/)
-                                        .map{ |learned_tag| learned_tag.strip.downcase }
+                                        .map { |learned_tag| learned_tag.strip.downcase }
                                         .reject(&:empty?)
                                         .uniq
     current_learned_tags = @daily_report.learned_tags.pluck(:name)
