@@ -23,7 +23,7 @@
 
   <div class="mb-3">
     <%= form.label :learned_tags, "タグ(,で区切って入力してください)", class: "form-label" %>
-    <%= form.text_field :learned_tags, value: daily_report.learned_tags_str, class: "form-control" %>
+    <%= text_field_tag :learned_tags, daily_report.learned_tags_str, class: "form-control" %>
   </div>
 
   <div class="mb-3">

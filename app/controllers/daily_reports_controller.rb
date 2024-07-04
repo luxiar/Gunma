@@ -2,11 +2,11 @@ class DailyReportsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @daily_reports = @daily_reports.includes(:user).includes(:learned_tags).order(created_at: :desc)
+    @daily_reports = @daily_reports.includes(:user).order(created_at: :desc)
 
     filter_daily_reports
 
-    @daily_reports = @daily_reports.page(params[:page])
+    @daily_reports = @daily_reports.preload(:learned_tags).page(params[:page])
   end
 
   def show; end
@@ -47,11 +47,10 @@ class DailyReportsController < ApplicationController
   end
 
   def register_learned_tags
-    learned_tags = params[:daily_report][:learned_tags].split(/,|、/)
-                                                       .map { |tag| tag.gsub(/\s+/, '') }
-                                                       .reject(&:empty?)
-                                                       .map { |tag| tag.match?(/A-Z/) ? tag.downcase : tag }
-                                                       .uniq
+    learned_tags = params[:learned_tags].split(/[,、]/)
+                                        .map{ |learned_tag| learned_tag.strip.downcase }
+                                        .reject(&:empty?)
+                                        .uniq
     current_learned_tags = @daily_report.learned_tags.pluck(:name)
 
     add_new_learned_tags(learned_tags, current_learned_tags)
@@ -70,7 +69,7 @@ class DailyReportsController < ApplicationController
     old_learned_tags = current_learned_tags - learned_tags
     old_learned_tags.each do |learned_tag|
       tag = LearnedTag.find_by(name: learned_tag)
-      @daily_report.learned_tags.delete(tag)
+      @daily_report.learned_tags.destroy(tag)
     end
   end
 
@@ -80,20 +79,27 @@ class DailyReportsController < ApplicationController
 
     filtered_params = params.require(:filter).permit(:user_id, :learned_tag_id)
 
-    if filtered_params[:user_id].present?
-      user = User.find_by(id: filtered_params[:user_id])
-      if user
-        @daily_reports = @daily_reports.where(user_id: user.id)
-        @filters << "ユーザー: #{user.full_name}"
-      end
-    end
+    filter_by_user(filtered_params[:user_id])
+    filter_by_learned_tag(filtered_params[:learned_tag_id])
+  end
 
-    if filtered_params[:learned_tag_id].present?
-      learned_tag = LearnedTag.find_by(id: filtered_params[:learned_tag_id])
-      if learned_tag
-        @daily_reports = @daily_reports.joins(:learned_tags).where(learned_tags: { id: learned_tag.id }).distinct
-        @filters << "タグ: #{learned_tag.name}"
-      end
-    end
+  def filter_by_user(user_id)
+    return if user_id.blank?
+
+    user = User.find_by(id: user_id)
+    return if user.blank?
+
+    @daily_reports = @daily_reports.where(user_id: user.id)
+    @filters << "ユーザー: #{user.full_name}"
+  end
+
+  def filter_by_learned_tag(learned_tag_id)
+    return if learned_tag_id.blank?
+
+    learned_tag = LearnedTag.find_by(id: learned_tag_id)
+    return if learned_tag.blank?
+
+    @daily_reports = @daily_reports.filter_by_learned_tag(learned_tag.id)
+    @filters << "タグ: #{learned_tag.name}"
   end
 end

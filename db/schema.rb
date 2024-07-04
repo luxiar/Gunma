@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_06_25_041839) do
-  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_ja_0900_as_cs_ks", force: :cascade do |t|
     t.text "content", null: false
     t.bigint "user_id", null: false
     t.bigint "daily_report_id", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_041839) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "daily_reports", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "daily_reports", charset: "utf8mb4", collation: "utf8mb4_ja_0900_as_cs_ks", force: :cascade do |t|
     t.string "title", null: false
     t.text "content"
     t.integer "mood", default: 0
@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_041839) do
     t.index ["user_id"], name: "index_daily_reports_on_user_id"
   end
 
-  create_table "daily_reports_learned_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "daily_reports_learned_tags", charset: "utf8mb4", collation: "utf8mb4_ja_0900_as_cs_ks", force: :cascade do |t|
     t.bigint "daily_report_id", null: false
     t.bigint "learned_tag_id", null: false
     t.datetime "created_at", null: false
@@ -40,14 +40,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_041839) do
     t.index ["learned_tag_id"], name: "index_daily_reports_learned_tags_on_learned_tag_id"
   end
 
-  create_table "learned_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "learned_tags", charset: "utf8mb4", collation: "utf8mb4_ja_0900_as_cs_ks", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_learned_tags_on_name", unique: true
   end
 
-  create_table "thumbs_ups", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "thumbs_ups", charset: "utf8mb4", collation: "utf8mb4_ja_0900_as_cs_ks", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "daily_report_id", null: false
     t.datetime "created_at", null: false
@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_25_041839) do
     t.index ["user_id"], name: "index_thumbs_ups_on_user_id"
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_ja_0900_as_cs_ks", force: :cascade do |t|
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.boolean "admin", default: false

@@ -11,6 +11,8 @@ class DailyReport < ApplicationRecord
 
   validates :title, presence: true
 
+  scope :filter_by_learned_tag, ->(learned_tag_id) { joins(:learned_tags).where(learned_tags: { id: learned_tag_id }) }
+
   def mood_ja
     {
       normal: 'まあまあ',
