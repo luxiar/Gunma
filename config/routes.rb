@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :daily_reports
-  resources :users
   resources :daily_reports do
     resource :thumbs_up, only: [:create, :destroy]
   end
+  resources :users
   devise_for :user
 
   get "index" => "index#index"

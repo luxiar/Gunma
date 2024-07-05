@@ -30,4 +30,8 @@ class User < ApplicationRecord
   def inactive_message
     active? ? super : :retired
   end
+
+  def can_thumbs_up?(daily_report)
+    !like_daily_reports.include?(daily_report)
+  end
 end

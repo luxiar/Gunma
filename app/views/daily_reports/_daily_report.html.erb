@@ -21,12 +21,14 @@
     </p>
 
     <p>
-      <% if daily_report.can_thumbs_up?(current_user) %>
-        <%= link_to "いいね", daily_report_thumbs_up_path(daily_report), data: { turbo_method: :post }, class: "btn btn-outline-secondary rounded-pill" %>
-      <% else %>
-        <%= link_to "いいね", daily_report_thumbs_up_path(daily_report), data: { turbo_method: :delete }, class: "btn btn-outline-info rounded-pill" %>
+      <%= turbo_frame_tag 'thumbs_up' do %>
+        <% if current_user.can_thumbs_up?(daily_report) %>
+          <%= link_to "いいね", daily_report_thumbs_up_path(daily_report), data: { turbo_method: :post }, class: "btn btn-outline-secondary rounded-pill" %>
+        <% else %>
+          <%= link_to "いいね", daily_report_thumbs_up_path(daily_report), data: { turbo_method: :delete }, class: "btn btn-outline-info rounded-pill" %>
+        <% end %>
+        <%= daily_report.thumbs_ups.count %>
       <% end %>
-      <%= daily_report.thumbs_ups.count %>
     </p>
   </div>
 
