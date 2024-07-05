@@ -20,16 +20,9 @@
       </span>
     </p>
 
-    <p>
-      <%= turbo_frame_tag 'thumbs_up' do %>
-        <% if current_user.can_thumbs_up?(daily_report) %>
-          <%= link_to "いいね", daily_report_thumbs_up_path(daily_report), data: { turbo_method: :post }, class: "btn btn-outline-secondary rounded-pill" %>
-        <% else %>
-          <%= link_to "いいね", daily_report_thumbs_up_path(daily_report), data: { turbo_method: :delete }, class: "btn btn-outline-info rounded-pill" %>
-        <% end %>
-        <%= daily_report.thumbs_ups.count %>
-      <% end %>
-    </p>
+    <div>
+      <%= render partial: 'thumbs_up', locals: {daily_report: daily_report} %>
+    </div>
   </div>
 
   

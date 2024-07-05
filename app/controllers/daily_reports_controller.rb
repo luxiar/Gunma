@@ -9,7 +9,9 @@ class DailyReportsController < ApplicationController
     @daily_reports = @daily_reports.preload(:learned_tags).page(params[:page])
   end
 
-  def show; end
+  def show
+    render partial: 'daily_reports/thumbs_up' if params[:thumbs_up]
+  end
 
   def new; end
 
