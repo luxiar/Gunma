@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :daily_reports do
     resource :thumbs_up, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
   resources :users
   devise_for :user

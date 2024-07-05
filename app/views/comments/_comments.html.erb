@@ -1,0 +1,17 @@
+<p class="h3 pmb-3">コメント</p>
+
+<% comments.each do |comment| %>
+  <div class="card mb-2 no-hover">
+    <div class="card-body pt-2">
+      <p class="card-subtitle">
+        <span class="small">
+          <%= link_to comment.user.full_name, user_path(comment.user), data: { turbo: false }, class: "link-dark link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+          <%= l comment.created_at %>
+        </span>
+      </p>
+      <p class="card-text">
+        <%= h(comment.content).gsub(/\R/, '<br>').html_safe %>
+      </p>
+    </div>
+  </div>
+<% end %>

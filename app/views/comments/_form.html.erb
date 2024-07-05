@@ -1,0 +1,12 @@
+<%= form_with(model: [daily_report, daily_report.comments.new]) do |form| %>
+  <div class="mb-3">
+    <%= form.label :content, class: "form-label" %>
+    <%= form.text_area :content, required: true, class: "form-control", rows: 3 %>
+  </div>
+
+  <%= hidden_field_tag :daily_report_id, daily_report.id %>
+
+  <div class="m-auto">
+    <%= form.submit class: "btn btn-outline-info" %>
+  </div>
+<% end %>

@@ -8,4 +8,13 @@
   <% if can? :destroy, @daily_report %>
     <%= link_to "削除", @daily_report, data: { turbo_method: :delete }, class: 'btn btn-outline-danger', onclick: "return confirm('本当に削除しますか？')" %>
   <% end %>
+
+  <%= turbo_frame_tag "comments" do %>
+    <div class="mt-4">
+      <%= render partial: "comments/comments", locals: {comments: @comments} %>
+    </div>
+    <div class="mt-4">
+      <%= render partial: "comments/form", locals: {daily_report: @daily_report} %>
+    </div>
+  <% end %>
 </div>
