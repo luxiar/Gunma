@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   def create
     comment = @daily_report.comments.new(comment_params)
     comment.user = current_user
-    
+
     if comment.save
       render partial: 'daily_reports/comments_form', locals: { daily_report: @daily_report, comments: @daily_report.comments.includes(:user) }
     else
