@@ -9,9 +9,7 @@ class DailyReportsController < ApplicationController
     @daily_reports = @daily_reports.preload(:learned_tags).page(params[:page])
   end
 
-  def show
-    @comments = @daily_report.comments.includes(:user)
-  end
+  def show; end
 
   def new; end
 
