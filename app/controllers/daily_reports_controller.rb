@@ -10,7 +10,7 @@ class DailyReportsController < ApplicationController
   end
 
   def show
-    @comments = @daily_report.comments.includes(:user).order(created_at: :asc)
+    @comments = @daily_report.comments.includes(:user)
   end
 
   def new; end
