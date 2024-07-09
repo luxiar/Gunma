@@ -123,24 +123,13 @@ GEM
     erubi (1.12.0)
     execjs (2.9.1)
     ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86_64-darwin)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (4.27.1)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.27.1-aarch64-linux)
-      bigdecimal
-      rake (>= 13)
     google-protobuf (4.27.1-arm64-darwin)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.27.1-x86-linux)
-      bigdecimal
-      rake (>= 13)
     google-protobuf (4.27.1-x86_64-darwin)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.27.1-x86_64-linux)
       bigdecimal
       rake (>= 13)
     i18n (1.14.5)
@@ -196,17 +185,9 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
-    nokogiri (1.16.5-aarch64-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.5-arm-linux)
-      racc (~> 1.4)
     nokogiri (1.16.5-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.5-x86-linux)
-      racc (~> 1.4)
     nokogiri (1.16.5-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.16.5-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.25.1)
@@ -325,17 +306,9 @@ GEM
     ruby-vips (2.2.1)
       ffi (~> 1.12)
     rubyzip (2.3.2)
-    sass-embedded (1.77.5-aarch64-linux-gnu)
-      google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.77.5-arm-linux-gnueabihf)
-      google-protobuf (>= 3.25, < 5.0)
     sass-embedded (1.77.5-arm64-darwin)
       google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.77.5-x86-linux-gnu)
-      google-protobuf (>= 3.25, < 5.0)
     sass-embedded (1.77.5-x86_64-darwin)
-      google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.77.5-x86_64-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
     selenium-webdriver (4.21.1)
       base64 (~> 0.2)
@@ -379,12 +352,8 @@ GEM
     zeitwerk (2.6.15)
 
 PLATFORMS
-  aarch64-linux
-  arm-linux
   arm64-darwin
-  x86-linux
-  x86_64-darwin
-  x86_64-linux
+  x86_64-darwin-23
 
 DEPENDENCIES
   bootsnap
