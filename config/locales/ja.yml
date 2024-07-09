@@ -10,6 +10,7 @@ ja:
     models:
       user: 'ユーザー'
       daily_report: '日報'
+      comment: 'コメント'
     attributes:
       user:
         first_name: '名前'
@@ -20,6 +21,8 @@ ja:
         title: 'タイトル'
         content: '本文'
         mood: '気分'
+      comment:
+        content: 'コメント'
   date:
     abbr_day_names:
     - 日

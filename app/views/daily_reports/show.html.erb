@@ -6,6 +6,10 @@
   <% end %>
   <%= link_to "戻る", daily_reports_path, class: 'btn btn-outline-secondary' %>
   <% if can? :destroy, @daily_report %>
-    <%= link_to "削除", @daily_report, data: { turbo_method: :delete }, class: 'btn btn-outline-danger', onclick: "return confirm('本当に削除しますか？')" %>
+    <%= link_to "削除", @daily_report, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-outline-danger' %>
   <% end %>
+
+  <div class="mt-4">
+    <%= render partial: "daily_reports/comments_form", locals: { daily_report: @daily_report, comments: @comments } %>
+  </div>
 </div>

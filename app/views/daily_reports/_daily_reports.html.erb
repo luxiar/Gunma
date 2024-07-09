@@ -1,7 +1,7 @@
 <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2">
   <% daily_reports.each do |daily_report| %>
     <div class="col">
-      <div class="card h-100">
+      <div class="card link-card h-100">
         <%= link_to daily_report, class: "card-body overflow-auto link-underline link-underline-opacity-0" do %>
           <p class="h5 card-title"><%= daily_report.title %></p>
           <p class="card-subtitle mb-2 text-muted">作成者：<%= daily_report.user.full_name %></p>
