@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     comment.user = current_user
 
     if comment.save
-      render partial: 'daily_reports/comments_form', locals: { daily_report: @daily_report }
+      render partial: 'daily_reports/comments_form', locals: { daily_report: @daily_report, comments: @daily_report.comments.includes(:user) }
     else
       redirect_to @daily_report, alert: 'コメントの投稿に失敗しました'
     end

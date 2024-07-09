@@ -3,9 +3,9 @@
 
 <%= turbo_frame_tag "comments_form" do %>
 
-  <%= render partial: 'daily_reports/comments', locals: { comments: daily_report.comments.includes(:user) } %>
+  <%= render partial: 'daily_reports/comments', locals: { comments: comments } %>
 
-  <%= form_with(model: [daily_report, daily_report.comments.new]) do |form| %>
+  <%= form_with(model: [daily_report, comments.new]) do |form| %>
     <div class="mt-4 mb-3">
       <%= form.text_area :content, required: true, class: "form-control", rows: 3 %>
     </div>
