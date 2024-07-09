@@ -170,5 +170,6 @@ daily_reports = [
 ]
 
 daily_reports.each do |daily_report|
+  daily_report[:content] = daily_report[:content].gsub(/\R/, '<br>')
   DailyReport.create!(daily_report).id
 end
