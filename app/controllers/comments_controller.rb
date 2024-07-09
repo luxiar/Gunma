@@ -14,9 +14,12 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = @daily_report.comments.find(params[:id])
-    comment.destroy
 
-    redirect_to @daily_report
+    if comment.destroy
+      render partial: 'daily_reports/comments', locals: { comments: @daily_report.comments.includes(:user) }
+    else
+      redirect_to @daily_report, alert: 'コメントの削除に失敗しました'
+    end
   end
 
   private
