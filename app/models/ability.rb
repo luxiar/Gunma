@@ -14,6 +14,10 @@ class Ability
     can :read, User
     can :update, User, id: user.id
 
+    # コメント
+    can :create, Comment
+    can :destroy, Comment, user_id: user.id
+
     # 管理者は全て許可
     can :manage, :all if user.admin?
 

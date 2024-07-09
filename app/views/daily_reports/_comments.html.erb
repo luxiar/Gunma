@@ -1,4 +1,3 @@
-<!-- このturbo_frame_tagは現時点では不要ですが、次のプルリクエストで利用予定です。 -->
 <%= turbo_frame_tag "comments" do %>
   <% comments.each do |comment| %>
     <div class="card mb-2">
@@ -13,6 +12,9 @@
           <%= h(comment.content).gsub(/\R/, '<br>').html_safe %>
         </p>
       </div>
+      <% if can? :destroy, comment %>
+        <%= link_to '削除', daily_report_comment_path(comment.daily_report, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-outline-danger btn-sm position-absolute', style: "bottom: 3px; right: 3px;" %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
