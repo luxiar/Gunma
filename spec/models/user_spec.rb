@@ -4,7 +4,43 @@ RSpec.describe User, type: :model do
   let(:user) { build :user }
   let(:daily_report) { build :daily_report }
 
-  describe '#retired?のテスト' do
+  describe 'last_nameのバリデーション' do
+    it '値が存在すれば有効' do
+      expect(user).to be_valid
+    end
+
+    it 'nilの場合無効' do
+      user.last_name = nil
+      user.valid?
+      expect(user.errors[:last_name]).to include('を入力してください')
+    end
+
+    it '空文字の場合無効' do
+      user.last_name = ''
+      user.valid?
+      expect(user.errors[:last_name]).to include('を入力してください')
+    end
+  end
+
+  describe 'first_nameのバリデーション' do
+    it '値が存在すれば有効' do
+      expect(user).to be_valid
+    end
+
+    it 'nilの場合無効' do
+      user.first_name = nil
+      user.valid?
+      expect(user.errors[:first_name]).to include('を入力してください')
+    end
+
+    it '空文字の場合無効' do
+      user.first_name = ''
+      user.valid?
+      expect(user.errors[:first_name]).to include('を入力してください')
+    end
+  end
+
+  describe '#retired?' do
     it '在職のユーザーだったらfalse' do
       expect(user.retired?).to be false
     end
@@ -15,7 +51,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#status_textのテスト' do
+  describe '#status_text' do
     it '在職のユーザーだったら"在職"' do
       expect(user.status_text).to eq '在職'
     end
@@ -26,13 +62,13 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#full_nameのテスト' do
+  describe '#full_name' do
     it 'last_nameとfirst_nameをスペース区切りで返す' do
-      expect(user.full_name).to eq '塚越 俊介'
+      expect(user.full_name).to eq '苗字 名前'
     end
   end
 
-  describe '#can_thumbs_up?(daily_report)のテスト' do
+  describe '#can_thumbs_up?(daily_report)' do
     it 'いいねしていない場合はtrue' do
       expect(user.can_thumbs_up?(daily_report)).to be true
     end
