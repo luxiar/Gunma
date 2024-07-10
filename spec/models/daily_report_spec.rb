@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe DailyReport, type: :model do
   let(:daily_report) { build :daily_report }
-  let(:learned_tag1) { build :learned_tag }
-  let(:learned_tag2) { build :learned_tag }
+  let(:learned_tag_foo) { build :learned_tag, name: 'foo' }
+  let(:learned_tag_bar) { build :learned_tag, name: 'bar' }
 
   describe 'titleのバリデーション' do
     it '値が存在すれば有効' do
@@ -56,9 +56,9 @@ RSpec.describe DailyReport, type: :model do
     end
 
     it 'learned_tagを持つとき","で区切って返す' do
-      daily_report.learned_tags << learned_tag1
-      daily_report.learned_tags << learned_tag2
-      expect(daily_report.learned_tags_str).to eq "#{learned_tag1.name},#{learned_tag2.name}"
+      daily_report.learned_tags << learned_tag_foo
+      daily_report.learned_tags << learned_tag_bar
+      expect(daily_report.learned_tags_str).to eq 'foo,bar'
     end
   end
 end

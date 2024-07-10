@@ -64,7 +64,7 @@ RSpec.describe User, type: :model do
 
   describe '#full_name' do
     it 'last_nameとfirst_nameをスペース区切りで返す' do
-      expect(user.full_name).to eq '苗字 名前'
+      expect(user.full_name).to eq "#{user.last_name} #{user.first_name}"
     end
   end
 
