@@ -122,6 +122,13 @@ GEM
     drb (2.2.1)
     erubi (1.12.0)
     execjs (2.9.1)
+    factory_bot (6.4.6)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
+    ffi (1.17.0-aarch64-linux-gnu)
+    ffi (1.17.0-arm-linux-gnu)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-darwin)
     globalid (1.2.1)
@@ -286,6 +293,8 @@ GEM
       parser (>= 3.3.1.0)
     rubocop-capybara (2.21.0)
       rubocop (~> 1.41)
+    rubocop-factory_bot (2.26.1)
+      rubocop (~> 1.61)
     rubocop-fjord (0.3.0)
       rubocop (>= 1.0)
       rubocop-performance
@@ -364,6 +373,7 @@ DEPENDENCIES
   debug
   devise
   devise-i18n
+  factory_bot_rails
   image_processing (~> 1.2)
   importmap-rails
   kaminari
@@ -374,6 +384,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-capybara
+  rubocop-factory_bot
   rubocop-fjord
   rubocop-performance
   rubocop-rails
