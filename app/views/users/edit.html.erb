@@ -3,4 +3,4 @@
   <%= link_to "一覧に戻る", users_path, class: 'btn btn-outline-secondary' %>
 </div>
 
-<%= render partial: "form", locals: {user: @user, password_not_required: admin_edit_other_user?(@user)} %>
+<%= render partial: "form", locals: {user: @user} %>
