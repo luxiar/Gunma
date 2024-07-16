@@ -14,11 +14,6 @@ class UsersController < ApplicationController
 
   def edit; end
 
-  def edit_password
-    @user = User.find(params[:id])
-    render :edit_password
-  end
-
   def create
     if @user.save
       redirect_to user_url(@user), notice: 'ユーザーが作成されました'
@@ -35,15 +30,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def update_password
-    if @user.update(user_params)
-      bypass_sign_in @user if current_user == @user
-      redirect_to user_url(@user), notice: 'パスワードが更新されました'
-    else
-      render :edit_password, layout: 'application', status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @user.destroy!
 
@@ -53,6 +39,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :active)
+    params.require(:user).permit(:first_name, :last_name, :email, :admin, :active)
   end
 end

@@ -4,10 +4,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
   resources :users do
-    member do
-      get 'edit_password'
-      patch 'update_password'
-    end
+    resource :password, only: [:edit, :update], controller: 'users/password'
   end
   devise_for :user
 
