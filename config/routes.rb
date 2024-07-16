@@ -3,7 +3,12 @@ Rails.application.routes.draw do
     resource :thumbs_up, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
-  resources :users
+  resources :users do
+    member do
+      get 'edit_password'
+      patch 'update_password'
+    end
+  end
   devise_for :user
 
   get "index" => "index#index"
