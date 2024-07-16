@@ -1,15 +1,13 @@
-<div class="col-md-8 m-auto">
-  <%= render @daily_report %>
+<%= render @daily_report %>
 
-  <% if can? :edit, @daily_report %>
-    <%= link_to "編集", edit_daily_report_path(@daily_report), class: 'btn btn-outline-info' %>
-  <% end %>
-  <%= link_to "戻る", daily_reports_path, class: 'btn btn-outline-secondary' %>
-  <% if can? :destroy, @daily_report %>
-    <%= link_to "削除", @daily_report, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-outline-danger' %>
-  <% end %>
+<% if can? :edit, @daily_report %>
+  <%= link_to "編集", edit_daily_report_path(@daily_report), class: 'btn btn-outline-info' %>
+<% end %>
+<%= link_to "戻る", daily_reports_path, class: 'btn btn-outline-secondary' %>
+<% if can? :destroy, @daily_report %>
+  <%= link_to "削除", @daily_report, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-outline-danger' %>
+<% end %>
 
-  <div class="mt-4">
-    <%= render partial: "daily_reports/comments_form", locals: { daily_report: @daily_report, comments: @comments } %>
-  </div>
+<div class="mt-4">
+  <%= render partial: "daily_reports/comments_form", locals: { daily_report: @daily_report, comments: @comments } %>
 </div>
