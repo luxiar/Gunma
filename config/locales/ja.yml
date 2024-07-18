@@ -197,3 +197,14 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  unauthorized:
+    manage:
+      all: "%{subject}の%{action}は許可されていません"
+  actions:
+    create: 作成
+    destroy: 削除
+    edit: 編集
+    index: 閲覧
+    new: 新規作成
+    show: 閲覧
+    update: 更新
