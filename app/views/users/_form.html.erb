@@ -1,15 +1,5 @@
 <%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(user.errors.count, 'error') %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: 'layouts/error_messages', locals: {obj: user} %>
 
   <div class="mb-3">
     <%= form.label :last_name, class: "form-label" %>
