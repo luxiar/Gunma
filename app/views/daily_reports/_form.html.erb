@@ -1,15 +1,5 @@
 <%= form_with(model: daily_report) do |form| %>
-  <% if daily_report.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(daily_report.errors.count, "error") %> prohibited this daily_report from being saved:</h2>
-
-      <ul>
-        <% daily_report.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: 'layouts/error_messages', locals: {obj: daily_report} %>
 
   <div class="mb-3">
     <%= form.label :title, class: "form-label" %>

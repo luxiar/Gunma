@@ -1,15 +1,5 @@
 <%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(user.errors.count, 'error') %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: 'layouts/error_messages', locals: {obj: user} %>
 
   <div class="mb-3">
     <%= form.label :last_name, class: "form-label" %>
@@ -26,7 +16,7 @@
     <%= form.text_field :email, class: "form-control" %>
   </div>
 
-  <% unless defined?(password_not_required) && password_not_required %>
+  <% unless user.persisted? %>
     <div class="mb-3">
       <%= form.label :password, class: "form-label" %>
       <%= form.password_field :password, class: "form-control" %>
@@ -57,7 +47,7 @@
     <%= form.submit class: "btn btn-outline-info" %>
     <% if user.persisted? %>
       <%= link_to "戻る", user_path(user), class: 'btn btn-outline-secondary' %>
-      <% if admin_edit_other_user?(user) %>
+      <% if can? :delete, user %>
         <%= link_to "削除", user, data: { turbo_method: :delete, confirm: "本当に削除しますか？" }, class: 'btn btn-outline-danger' %>
       <% end %>
     <% end %>
