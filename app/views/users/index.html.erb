@@ -24,25 +24,23 @@
 </nav>
 
 <div id="users">
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <tr>
         <td>氏名</td>
         <td>メールアドレス</td>
         <td>権限</td>
         <td>ステータス</td>
-        <td></td>
       </tr>
     </thead>
 
     <tbody class="table-group-divider">
       <% @users.each do |user| %>
-        <tr>
-          <td><%= "#{user.last_name} #{user.first_name}" %></td>
+        <tr class="position-relative">
+          <td><%= link_to "#{user.last_name} #{user.first_name}", user, class: 'link-dark stretched-link link-underline link-underline-opacity-0' %></td>
           <td><%= user.email %></td>
           <td><%= user.admin ? '管理者' : '一般' %></td>
           <td><%= user.status_text %></td>
-          <td><%= link_to "詳細", user, class: 'btn btn-outline-secondary', style: '--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;' %></td>
         </tr>
       <% end %>
     </tbody>
