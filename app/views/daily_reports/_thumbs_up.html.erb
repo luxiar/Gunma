@@ -1,5 +1,5 @@
 <%= turbo_frame_tag 'thumbs_up' do %>
-  <span data-bs-toggle="tooltip" data-bs-title="<%= daily_report.liked_users_str %>">
+  <span data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-offset="0,12" data-bs-title="<%= daily_report.liked_users_str %>">
     <% if current_user.can_thumbs_up?(daily_report) %>
       <%= link_to daily_report_thumbs_up_path(daily_report), data: { turbo_method: :post }, class: "btn btn-outline-secondary rounded-pill" do %>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
