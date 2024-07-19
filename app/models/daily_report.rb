@@ -27,4 +27,10 @@ class DailyReport < ApplicationRecord
   def learned_tags_str
     learned_tags.map(&:name).join(',')
   end
+
+  def liked_users_str
+    return liked_users.map(&:last_name).join(', ') if liked_users.size <= 5
+
+    "#{liked_users.limit(5).map(&:last_name).join(', ')}..."
+  end
 end
