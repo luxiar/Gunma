@@ -6,7 +6,7 @@ class DailyReportsController < ApplicationController
 
     filter_daily_reports
 
-    @daily_reports = @daily_reports.preload(:learned_tags).page(params[:page])
+    @daily_reports = @daily_reports.preload(:learned_tags).includes(:thumbs_ups).page(params[:page])
   end
 
   def show
