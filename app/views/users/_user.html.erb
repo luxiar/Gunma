@@ -1,23 +1,20 @@
 <div id="<%= dom_id user %>">
-  <table class="table table-borderless w-75">
-    <thead></thead>
-    <tbody>
-      <tr>
-        <td class="row">ユーザー名</td>
-        <td><%= user.full_name %></td>
-      </tr>
-      <tr>
-        <td class="row">メールアドレス</td>
-        <td><%= user.email %></td>
-      </tr>
-      <tr>
-        <td class="row">権限</td>
-        <td><%= user.admin ? "管理者" : "一般" %></td>
-      </tr>
-      <tr>
-        <td class="row">ステータス</td>
-        <td><%= user.status_text %></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col-4">ユーザー名</div>
+      <div class="col-8"><%= user.full_name %></div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4">メールアドレス</div>
+      <div class="col-8"><%= user.email %></div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4">権限</div>
+      <div class="col-8"><%= user.admin ? "管理者" : "一般" %></div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4">ステータス</div>
+      <div class="col-8"><%= user.status_text %></div>
+    </div>
+  </div>
 </div>
