@@ -1,16 +1,43 @@
-<div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2">
-  <% daily_reports.each do |daily_report| %>
-    <div class="col">
-      <div class="card link-card h-100">
-        <%= link_to daily_report, class: "card-body overflow-auto link-underline link-underline-opacity-0" do %>
-          <p class="h5 card-title"><%= daily_report.title %></p>
-          <p class="card-subtitle mb-2 text-muted">作成者：<%= daily_report.user.full_name %></p>
-          <div class="overflow-auto flex-grow-1" style="max-height: 150px;">
-            <p class="card-text"><%= simple_format(daily_report.content) %></p>
-          </div>
-        <% end %>
+<% filters.each do |filter| %>
+  <p>
+    <span class="small"><%= filter %></span>
+  </p>
+<% end %>
+
+<% daily_reports.each do |daily_report| %>
+  <div class="card link-card mb-2">
+    <div class="card-body pt-2">
+      <h2 class="card-title"><%= link_to daily_report.title, daily_report, class: "h5 link-dark link-underline link-underline-opacity-0 stretched-link" %></h2>
+      <div class="d-flex justify-content-between">
+        <p class="card-subtitle">
+          <span class="small">
+            <% if controller.controller_name != "users" %>
+              <%= link_to daily_report.user.full_name, user_path(daily_report.user), class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
+            <% end %>
+            <%= l daily_report.created_at %>
+          </span>
+          <span class="badge rounded-pill <%= "mood-#{daily_report.mood}" %>">
+            <%= daily_report.mood_ja %>
+          </span>
+          <span class="small">
+            <% daily_report.learned_tags.each do |tag| %>
+              <%= link_to tag.name, daily_reports_path(filter: {learned_tag_id: tag.id}), class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
+            <% end %>
+          </span>
+        </p>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+          </svg>
+          <%= daily_report.thumbs_ups.size %>
+        </div>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
+<% if !(defined? no_pagenate) %>
+  <div class="mt-3 mb-5">
+    <%= paginate daily_reports %>
+  </div>
+<% end %>

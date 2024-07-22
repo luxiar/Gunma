@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Gunma</title>
+    <title>DailyLog</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,9 +13,9 @@
 
   <body>
     <header class="sticky-top">
-      <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+      <nav class="navbar bg-dark navbar-expand-lg" data-bs-theme="dark">
         <div class="container-fluid">
-          <%= link_to 'Gunma', root_path, class: 'navbar-brand' %>
+          <%= link_to 'DailyLog', root_path, class: 'navbar-brand' %>
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav me-auto mb-lg-0">
               <% if user_signed_in? %>
@@ -61,7 +61,7 @@
       </div>
     <% end %>
 
-    <main class="container mt-5 mb-5">
+    <main class="container col-md-8 m-auto mt-5 mb-5">
       <%= yield %>
     </main>
   </body>

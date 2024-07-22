@@ -1,21 +1,20 @@
 <div id="<%= dom_id user %>">
-  <p>
-    <strong>ユーザー名:</strong>
-    <%= "#{user.last_name} #{user.first_name}" %>
-  </p>
-
-  <p>
-    <strong>メールアドレス:</strong>
-    <%= user.email %>
-  </p>
-
-  <p>
-    <strong>権限:</strong>
-    <%= user.admin ? "管理者" : "一般" %>
-  </p>
-
-  <p>
-    <strong>ステータス:</strong>
-    <%= user.status_text %>
-  </p>
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col-4">ユーザー名</div>
+      <div class="col-8"><%= user.full_name %></div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4">メールアドレス</div>
+      <div class="col-8"><%= user.email %></div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4">権限</div>
+      <div class="col-8"><%= user.admin ? "管理者" : "一般" %></div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4">ステータス</div>
+      <div class="col-8"><%= user.status_text %></div>
+    </div>
+  </div>
 </div>

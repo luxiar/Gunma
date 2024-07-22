@@ -1,9 +1,9 @@
 <div class="text-center mb-5">
-  <h1>Gunma</h1>
-  <p class="lead">過去の日報を検索して参考にできるサイトです</p>
+  <h1>DailyLog</h1>
+  <p class="lead">過去の日報を検索してコメントしたり参考にできるサイトです</p>
 </div>
 
-<%= render partial: 'daily_reports/daily_reports', locals: {daily_reports: @daily_reports} %>
+<%= render partial: 'daily_reports/daily_reports', locals: {daily_reports: @daily_reports, filters: [], no_pagenate: true} %>
 
 <div class="text-center mt-5">
   <% if user_signed_in? %>

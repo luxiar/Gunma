@@ -208,3 +208,9 @@ ja:
     new: 新規作成
     show: 閲覧
     update: 更新
+  views:
+    pagination:
+      first: '&laquo;'
+      last: '&raquo;'
+      next: '&rsaquo;'
+      previous: '&lsaquo;'

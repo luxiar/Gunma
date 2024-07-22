@@ -48,7 +48,7 @@
     <% if user.persisted? %>
       <%= link_to "戻る", user_path(user), class: 'btn btn-outline-secondary' %>
       <% if can? :delete, user %>
-        <%= link_to "削除", user, data: { turbo_method: :delete, confirm: "本当に削除しますか？" }, class: 'btn btn-outline-danger' %>
+        <%= link_to "削除", user, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-outline-danger' %>
       <% end %>
     <% end %>
   </div>
