@@ -11,7 +11,9 @@
       <div class="d-flex justify-content-between">
         <p class="card-subtitle">
           <span class="small">
-            <%= link_to daily_report.user.full_name, user_path(daily_report.user), class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
+            <% if controller.controller_name != "users" %>
+              <%= link_to daily_report.user.full_name, user_path(daily_report.user), class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
+            <% end %>
             <%= l daily_report.created_at %>
           </span>
           <span class="badge rounded-pill <%= "mood-#{daily_report.mood}" %>">

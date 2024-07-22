@@ -12,7 +12,7 @@ class Ability
 
     # ユーザー
     can :read, User
-    can %i[update edit_password update_password], User, id: user.id
+    can :update, User, id: user.id
 
     # コメント
     can :create, Comment

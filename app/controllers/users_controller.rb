@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @daily_reports = @user.daily_reports.order(created_at: :desc).limit(5).includes(:user)
+    @daily_reports = @user.daily_reports.order(created_at: :desc).limit(5).includes(:user, :learned_tags, :thumbs_ups)
   end
 
   def new; end
@@ -33,7 +33,8 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy!
 
-    redirect_to users_url, notice: 'ユーザーが削除されました'
+    url = @user == current_user ? root_url : users_url
+    redirect_to url, notice: 'ユーザーが削除されました'
   end
 
   private
