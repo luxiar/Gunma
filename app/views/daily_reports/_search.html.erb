@@ -1,0 +1,7 @@
+<%= search_form_for search, url: daily_reports_path do |f| %>
+  <%= f.search_field :title_or_content_body_or_learned_tags_name_cont, class: "form-control mb-3" %>
+
+  <%= f.submit class: "btn btn-outline-info" %>
+
+  <%= link_to "クリア", daily_reports_path, class: "btn btn-outline-secondary" %>
+<% end %>

@@ -3,4 +3,8 @@
   <%= link_to "新規日報", new_daily_report_path, class: 'btn btn-outline-info' %>
 </div>
 
+<div class="container mb-5">
+  <%= render partial: "search", locals: { search: @search } %>
+</div>
+
 <%= render partial: "daily_reports", locals: { daily_reports: @daily_reports } %>

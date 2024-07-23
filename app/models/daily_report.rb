@@ -8,6 +8,8 @@ class DailyReport < ApplicationRecord
   has_many :commented_users, through: :comments, source: :user
 
   has_rich_text :content
+  has_one :content, class_name: 'ActionText::RichText', as: :record, dependent: :destroy
+
   enum :mood, %i[normal fun productive sleepy unwell]
 
   validates :title, presence: true
@@ -32,5 +34,13 @@ class DailyReport < ApplicationRecord
     return liked_users.map(&:last_name).join(', ') if liked_users.size <= 5
 
     "#{liked_users.limit(5).map(&:last_name).join(', ')}..."
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[title mood created_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[user learned_tags liked_users content]
   end
 end
