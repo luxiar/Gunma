@@ -1,9 +1,3 @@
-<% filters.each do |filter| %>
-  <p>
-    <span class="small"><%= filter %></span>
-  </p>
-<% end %>
-
 <% daily_reports.each do |daily_report| %>
   <div class="card link-card mb-2">
     <div class="card-body pt-2">
@@ -21,7 +15,7 @@
           </span>
           <span class="small">
             <% daily_report.learned_tags.each do |tag| %>
-              <%= link_to tag.name, daily_reports_path(filter: {learned_tag_id: tag.id}), class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
+              <%= link_to tag.name, daily_reports_path, class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
             <% end %>
           </span>
         </p>
