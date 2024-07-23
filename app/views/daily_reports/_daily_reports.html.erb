@@ -15,7 +15,7 @@
           </span>
           <span class="small">
             <% daily_report.learned_tags.each do |tag| %>
-              <%= link_to tag.name, daily_reports_path, class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
+              <%= link_to tag.name, daily_reports_path(q: { learned_tags_id_eq: tag.id }), class: "link-secondary link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-75-hover position-relative z-1" %>
             <% end %>
           </span>
         </p>

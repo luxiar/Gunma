@@ -1,5 +1,14 @@
 <%= search_form_for search, url: daily_reports_path do |f| %>
-  <%= f.search_field :title_or_content_body_or_learned_tags_name_cont, class: "form-control mb-3" %>
+  <%= f.label :user_id_eq, 'ユーザー' %>
+  <%= f.select :user_id_eq, User.all.map { |user| [user.full_name, user.id] }, {include_blank: '選択なし'}, class: "form-select mb-3" %>
+
+  <%= f.label :mood_eq, '気分' %>
+  <%= f.select :mood_eq, DailyReport.moods.map { |mood, value| [t("enums.mood.#{mood}"), value] }, {include_blank: '選択なし'}, class: "form-select mb-3" %>
+
+  <%= f.label :learned_tags_id_eq, 'タグ' %>
+  <%= f.select :learned_tags_id_eq, LearnedTag.all.map { |tag| [tag.name, tag.id] }, {include_blank: '選択なし'}, class: "form-select mb-3" %>
+
+  <%= f.search_field :title_or_content_body_or_comments_content_or_learned_tags_name_cont, class: "form-control mb-3" %>
 
   <%= f.submit class: "btn btn-outline-info" %>
 

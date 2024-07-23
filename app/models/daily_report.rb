@@ -41,6 +41,6 @@ class DailyReport < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    %w[user learned_tags liked_users content]
+    %w[user learned_tags liked_users comments content]
   end
 end

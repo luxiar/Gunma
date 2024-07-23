@@ -34,4 +34,8 @@ class User < ApplicationRecord
   def can_thumbs_up?(daily_report)
     !like_daily_reports.include?(daily_report)
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ['id']
+  end
 end
