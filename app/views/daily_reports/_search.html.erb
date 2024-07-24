@@ -1,19 +1,45 @@
 <%= search_form_for search, url: daily_reports_path do |f| %>
-  <%= f.label :user_id_eq, 'ユーザー' %>
-  <%= f.select :user_id_eq, User.all.map { |user| [user.full_name, user.id] }, {include_blank: '選択なし'}, class: "form-select mb-3" %>
+  <div class="row mb-3">
+    <div class="col-4">キーワード検索</div>
+    <div class="col-8">
+      <%= f.search_field :title_or_content_body_or_comments_content_or_learned_tags_name_cont, class: "form-control" %>
+    </div>
+  </div>
 
-  <%= f.label :mood_eq, '気分' %>
-  <%= f.select :mood_eq, DailyReport.moods.map { |mood, value| [t("enums.mood.#{mood}"), value] }, {include_blank: '選択なし'}, class: "form-select mb-3" %>
+  <div class="row mb-3">
+    <div class="col-4">
+      <%= f.label :user_id_eq, 'ユーザー' %>
+    </div>
+    <div class="col-8">
+      <%= f.select :user_id_eq, User.all.map { |user| [user.full_name, user.id] }, {include_blank: ''}, class: "form-select" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-4">
+      <%= f.label :mood_eq, '気分' %>
+    </div>
+    <div class="col-8">
+      <%= f.select :mood_eq, DailyReport.moods.map { |mood, value| [t("enums.mood.#{mood}"), value] }, {include_blank: ''}, class: "form-select" %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-4">
+      <%= f.label :learned_tags_id_eq, 'タグ' %>
+    </div>
+    <div class="col-8">
+      <%= f.select :learned_tags_id_eq, LearnedTag.all.map { |tag| [tag.name, tag.id] }, {include_blank: ''}, class: "form-select" %>
+    </div>
+  </div>
 
-  <%= f.label :learned_tags_id_eq, 'タグ' %>
-  <%= f.select :learned_tags_id_eq, LearnedTag.all.map { |tag| [tag.name, tag.id] }, {include_blank: '選択なし'}, class: "form-select mb-3" %>
-
-  <%= f.search_field :title_or_content_body_or_comments_content_or_learned_tags_name_cont, class: "form-control mb-3" %>
-
-  <%= f.submit class: "btn btn-outline-info" %>
-
+  <%= f.submit class: "btn btn-outline-info me-1" %>
   <%= link_to "クリア", daily_reports_path, class: "btn btn-outline-secondary" %>
 
-  <%= sort_link search, :created_at, '投稿日' %>
-  <%= sort_link search, :thumbs_ups_count, 'いいね数' %>
+  <div class="row mt-3 mb-3">
+    <div class="col-2">
+      <%= sort_link search, :created_at, '投稿日', class: "link-dark link-underline link-underline-opacity-0" %>
+    </div>
+    <div class="col-2">
+      <%= sort_link search, :thumbs_ups_count, [:thumbs_ups_count, 'created_at desc'], 'いいね数', default_order: :desc, class: "link-dark link-underline link-underline-opacity-0" %>
+    </div>
+  </div>
 <% end %>

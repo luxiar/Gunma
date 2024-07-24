@@ -37,7 +37,7 @@ class DailyReport < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[title mood created_at]
+    %w[title mood created_at thumbs_ups_count]
   end
 
   def self.ransackable_associations(auth_object = nil)

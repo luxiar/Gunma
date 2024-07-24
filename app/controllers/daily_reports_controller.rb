@@ -2,8 +2,8 @@ class DailyReportsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    params[:q] ||= { s: 'created_at desc' }
     @search = DailyReport.ransack(params[:q])
+    @search.sorts = 'created_at desc' if @search.sorts.empty?
     @daily_reports = @search.result(distinct: true).includes(:user, :learned_tags, :thumbs_ups).page(params[:page])
   end
 
