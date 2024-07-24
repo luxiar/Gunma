@@ -13,4 +13,7 @@
   <%= f.submit class: "btn btn-outline-info" %>
 
   <%= link_to "クリア", daily_reports_path, class: "btn btn-outline-secondary" %>
+
+  <%= sort_link search, :created_at, '投稿日' %>
+  <%= sort_link search, :thumbs_ups_count, 'いいね数' %>
 <% end %>

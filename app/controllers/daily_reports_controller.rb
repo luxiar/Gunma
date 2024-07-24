@@ -2,8 +2,9 @@ class DailyReportsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    params[:q] ||= { s: 'created_at desc' }
     @search = DailyReport.ransack(params[:q])
-    @daily_reports = @search.result(distinct: true).includes(:user, :learned_tags, :thumbs_ups).order(created_at: :desc).page(params[:page])
+    @daily_reports = @search.result(distinct: true).includes(:user, :learned_tags, :thumbs_ups).page(params[:page])
   end
 
   def show
