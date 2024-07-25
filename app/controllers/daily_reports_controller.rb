@@ -2,11 +2,9 @@ class DailyReportsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @daily_reports = @daily_reports.includes(:user).order(created_at: :desc)
-
-    filter_daily_reports
-
-    @daily_reports = @daily_reports.preload(:learned_tags).includes(:thumbs_ups).page(params[:page])
+    @search = DailyReport.ransack(params[:q])
+    @search.sorts = 'created_at desc' if @search.sorts.empty?
+    @daily_reports = @search.result(distinct: true).includes(:user, :learned_tags, :thumbs_ups).page(params[:page])
   end
 
   def show
@@ -73,35 +71,5 @@ class DailyReportsController < ApplicationController
       tag = LearnedTag.find_by(name: learned_tag)
       @daily_report.learned_tags.destroy(tag)
     end
-  end
-
-  def filter_daily_reports
-    @filters = []
-    return if params[:filter].blank?
-
-    filtered_params = params.require(:filter).permit(:user_id, :learned_tag_id)
-
-    filter_by_user(filtered_params[:user_id])
-    filter_by_learned_tag(filtered_params[:learned_tag_id])
-  end
-
-  def filter_by_user(user_id)
-    return if user_id.blank?
-
-    user = User.find_by(id: user_id)
-    return if user.blank?
-
-    @daily_reports = @daily_reports.where(user_id: user.id)
-    @filters << "ユーザー: #{user.full_name}"
-  end
-
-  def filter_by_learned_tag(learned_tag_id)
-    return if learned_tag_id.blank?
-
-    learned_tag = LearnedTag.find_by(id: learned_tag_id)
-    return if learned_tag.blank?
-
-    @daily_reports = @daily_reports.filter_by_learned_tag(learned_tag.id)
-    @filters << "タグ: #{learned_tag.name}"
   end
 end

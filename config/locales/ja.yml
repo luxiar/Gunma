@@ -214,3 +214,10 @@ ja:
       last: '&raquo;'
       next: '&rsaquo;'
       previous: '&lsaquo;'
+  enums:
+    mood:
+      normal: "まあまあ"
+      fun: "楽しかった"
+      productive: "捗った"
+      sleepy: "眠かった"
+      unwell: "体調不良"
