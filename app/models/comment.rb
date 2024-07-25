@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
 
   validates :content, presence: true
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     ['content']
   end
 end

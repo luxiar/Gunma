@@ -36,11 +36,11 @@ class DailyReport < ApplicationRecord
     "#{liked_users.limit(5).map(&:last_name).join(', ')}..."
   end
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[title mood created_at thumbs_ups_count]
   end
 
-  def self.ransackable_associations(auth_object = nil)
+  def self.ransackable_associations(_auth_object = nil)
     %w[user learned_tags liked_users comments content]
   end
 end

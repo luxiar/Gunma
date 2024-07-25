@@ -35,7 +35,7 @@ class User < ApplicationRecord
     !like_daily_reports.include?(daily_report)
   end
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     ['id']
   end
 end
