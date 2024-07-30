@@ -8,6 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# ユーザー作成
 tsukagoshi = User.create!(
   last_name: '塚越',
   first_name: '俊介',
@@ -44,10 +45,40 @@ kuboki = User.create!(
   admin: false
 )
 
-learned_tags = ['html', 'css', 'javascript', 'ruby', 'rails', 'sinatra', 'c', 'c#', 'c++', 'java', 'python', 'php'].map do |tag|
+(1..10).each do |i|
+  User.create!(
+    last_name: 'normal',
+    first_name: "user#{i}",
+    email: "user#{i}@example.com",
+    password: 'password',
+    password_confirmation: 'password',
+    admin: false,
+    active: i.odd?
+  )
+end
+
+# タグ作成
+learned_tags = [
+  'html',
+  'css',
+  'javascript',
+  'vi',
+  'linux',
+  'http',
+  'テスト',
+  'git',
+  'github',
+  'ruby',
+  'rails',
+  'sinatra',
+  'sql',
+  'デバッグ手法',
+  'ものづくり'
+].map do |tag|
   LearnedTag.create!(name: tag)
 end
 
+# 日報作成
 (1..10).each do |i|
   [yoshino, uyama, kuboki].each do |user|
     daily_report = DailyReport.create!(
@@ -66,23 +97,13 @@ end
   end
 end
 
-(1..6).each do |i|
-  User.create!(
-    last_name: 'normal',
-    first_name: "user#{i}",
-    email: "user#{i}@example.com",
-    password: 'password',
-    password_confirmation: 'password',
-    admin: false,
-    active: i.odd?
-  )
-end
-
+# 日報作成
 daily_reports = [
   {
     title: '6/20',
     mood: 0,
     user_id: tsukagoshi.id,
+    tags: ['devise', 'bootstrap'],
     content: <<~CONTENT
       # 6月20日
       ## 予定
@@ -115,6 +136,7 @@ daily_reports = [
     title: '6/21',
     mood: 1,
     user_id: tsukagoshi.id,
+    tags: ['bootstrap'],
     content: <<~CONTENT
       # 6月21日
       ## 予定
@@ -144,6 +166,7 @@ daily_reports = [
     title: '6/24',
     mood: 2,
     user_id: tsukagoshi.id,
+    tags: ['論理削除', 'bootstrap'],
     content: <<~CONTENT
       # 6月24日
       ## 予定
@@ -171,5 +194,35 @@ daily_reports = [
 
 daily_reports.each do |daily_report|
   daily_report[:content] = daily_report[:content].gsub(/\R/, '<br>')
-  DailyReport.create!(daily_report).id
+  tags = daily_report.delete(:tags)
+  daily_report = DailyReport.create!(daily_report)
+
+  tags.each do |tag|
+    learned_tag = LearnedTag.find_or_create_by(name: tag)
+    daily_report.learned_tags << learned_tag
+  end
+end
+
+# コメント、いいね作成
+comments = [
+  'いいと思います',
+  '参考になります',
+  'わかります',
+  'すごいですね',
+  '頑張ってください',
+]
+
+User.all.each do |user|
+  DailyReport.all.each do |daily_report|
+    Comment.create!(
+      content: comments.sample,
+      user_id: user.id,
+      daily_report_id: daily_report.id
+    ) if rand > 0.8
+
+    ThumbsUp.create!(
+      user_id: user.id,
+      daily_report_id: daily_report.id
+    ) if rand > 0.4
+  end
 end
